@@ -1,0 +1,63 @@
+.user-form {
+  display: flex;
+  gap: 53px;
+  padding: 50px 30px;
+
+  &__avatar {
+    width: 130px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #7a9abf;
+  }
+
+  &__content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &__row {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  &__field {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: 8px;
+      font-weight: 400;
+      font-size: 1rem;
+      color: #232323;
+    }
+
+    input {
+      padding: 14px 16px;
+      border: 1px solid #dfeaf2;
+      border-radius: 12px;
+      font-size: 15px;
+      color: #718ebf;
+      background-color: #ffffff;
+      outline: none;
+      transition: border 0.3s ease;
+
+      &::placeholder {
+        color: #718ebf;
+      }
+
+      &:focus {
+        border-color: #a5b9e3;
+      }
+    }
+  }
+
+  &__button {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

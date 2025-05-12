@@ -1,5 +1,41 @@
-.side-bar{
+.side-bar {
   max-width: 250px;
   width: 100%;
   height: 100vh;
+  background: #fff;
+  padding: 33px;
+  display: flex;
+  flex-direction: column;
+  gap: 58px;
+  border-right: 1px solid #e6eff5;
+
+  &_link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    span {
+      font-size: 25px;
+      color: #343c6a;
+      font-weight: bold;
+    }
+  }
+
+  &_list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    li a {
+      color: #b1b1b1;
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      font-weight: 500;
+    }
+  }
+}
+
+.activated {
+  color: #1814f3 !important;
 }

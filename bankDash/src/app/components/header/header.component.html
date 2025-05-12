@@ -1,0 +1,29 @@
+<header class="header">
+  <form class="header__form">
+    <h1 class="header__title">{{ dataTitle }}</h1>
+
+    <div class="header__tools">
+      <div class="search">
+        <label for="search-input" class="search__icon">
+          <img src="assets/headerImg/magnifying.svg" alt="Search" />
+        </label>
+        <input
+          id="search-input"
+          type="text"
+          class="search__input"
+          placeholder="Search for something"
+        />
+      </div>
+
+      <button type="button" mat-icon-button class="settings-button" aria-label="Settings">
+        <mat-icon>settings</mat-icon>
+      </button>
+
+      <button type="button" mat-icon-button class="notification-button" aria-label="Notifications">
+        <mat-icon>notifications_unread</mat-icon>
+      </button>
+
+      <div class="user-avatar"></div>
+    </div>
+  </form>
+</header>

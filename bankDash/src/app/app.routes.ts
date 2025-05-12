@@ -12,39 +12,48 @@ import { ServicesComponent } from './page/services/services.component';
 export const routes: Routes = [
   {
     path: 'dashboard',
-    component: DashboardComponent
+    component: DashboardComponent,
+    data: { title: 'Dashboard' }
   },
   {
     path: 'transactions',
-    component: TransactionsComponent
+    component: TransactionsComponent,
+    data: { title: 'transactions' }
   },
   {
     path: 'credit-cards',
-    component: CreditCardsComponent
+    component: CreditCardsComponent,
+    data: { title: 'credit-cards' }
   },
   {
     path: 'loans',
-    component: LoansComponent
+    component: LoansComponent,
+    data: { title: 'loans' }
   },
   {
     path: 'investments',
-    component: InvestmentsComponent
+    component: InvestmentsComponent,
+    data: { title: 'investments' }
   },
   {
     path: 'settings',
-    component: SettingComponent
+    component: SettingComponent,
+    data: { title: 'settings' }
   },
   {
     path: 'privileges',
-    component: MyPrivilegesComponent
+    component: MyPrivilegesComponent,
+    data: { title: 'privileges' }
   },
   {
     path: 'services',
-    component: ServicesComponent
+    component: ServicesComponent,
+    data: { title: 'services' }
   },
   {
     path: 'accounts',
-    component: AccountsComponent
+    component: AccountsComponent,
+    data: { title: 'accounts' }
   },
   {
     path: '**',
