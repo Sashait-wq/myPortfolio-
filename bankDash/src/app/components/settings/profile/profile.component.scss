@@ -5,9 +5,10 @@
 
   &__avatar {
     width: 130px;
-    height: 120px;
+    height: 130px;
     border-radius: 50%;
     background-color: #7a9abf;
+    flex-shrink: 0;
   }
 
   &__content {

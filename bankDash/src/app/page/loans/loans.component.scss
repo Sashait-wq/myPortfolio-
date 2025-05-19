@@ -1,0 +1,94 @@
+.loan-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &__cards {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+  }
+
+  &__card {
+    display: flex;
+    gap: 15px;
+    background: #ffffff;
+    padding: 25px 27px;
+    border-radius: 25px;
+    width: 100%;
+    flex: 1 1 200px;
+  }
+
+  &__card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+
+    a {
+      font-size: 16px;
+      color: #718ebf;
+      font-weight: 400;
+    }
+
+    span {
+      font-size: 20px;
+      font-weight: 500;
+      color: #232323;
+    }
+  }
+
+  &__icon {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    &--personal {
+      background: #e7edff;
+    }
+    &--corporate {
+      background: #fff5d9;
+    }
+    &--business {
+      background: #ffe0eb;
+    }
+    &--custom {
+      background: #dcfaf8;
+    }
+  }
+
+  &__caption {
+    text-align: start;
+    margin-bottom: 15px;
+    color: #333b69;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  &__footer {
+    &-summary {
+      display: flex;
+      justify-content: space-between;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.mat-elevation-z8 {
+  background: #ffffff;
+  padding: 0 22px 30px 22px;
+  border-radius: 25px;
+
+  th {
+    color: #718ebf;
+    font-size: 1rem;
+  }
+}

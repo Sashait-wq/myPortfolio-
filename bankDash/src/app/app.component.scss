@@ -1,26 +1,18 @@
-//.wrap {
-//  display: flex;
-//
-//  &_components {
-//    width: 100%;
-//  }
-//}
-//.router-wrap {
-//  padding: 30px 40px;
-//  background: #f5f7fa;
-//  width: 100%;
-//}
-
-.wrap {
+.layout {
   display: flex;
 
-  &_content {
+  &__sidebar {
+  }
+
+  &__main {
     width: 100%;
   }
 
-  &_sideBar-content {
+  &__header {
+  }
+
+  &__content {
     padding: 40px 30px;
     background: #f5f7fa;
-    height: 100vh;
   }
 }

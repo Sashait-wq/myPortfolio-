@@ -6,11 +6,23 @@
       <div class="user-form__field">
         <label for="yourName">Your Name</label>
         <input type="text" id="yourName" placeholder="Charlene Reed" formControlName="yourName" />
+
+        <div *ngIf="isInvalid('yourName')">
+          @if (getError('yourName', 'required')) {
+            <small style="color: red">Це поле обов'язкове</small>
+          }
+        </div>
       </div>
 
       <div class="user-form__field">
         <label for="userName">User Name</label>
         <input type="text" id="userName" placeholder="Charlene Reed" formControlName="userName" />
+
+        <div *ngIf="isInvalid('userName')">
+          @if (getError('userName', 'required')) {
+            <small style="color: red">Це поле обов'язкове</small>
+          }
+        </div>
       </div>
     </div>
 
@@ -24,12 +36,12 @@
           formControlName="email"
         />
 
-        <div *ngIf="form.controls.email?.invalid && form.controls.email?.touched">
-          @if (form.controls.email.hasError('required')) {
-            <small style="color: red">Поле обовязкове</small>
+        <div *ngIf="isInvalid('email')">
+          @if (getError('email', 'required')) {
+            <small style="color: red">Це поле обов'язкове</small>
           }
-          @if (form.controls.email.hasError('email')) {
-            <small style="color: red">Емаіл не валідний</small>
+          @if (getError('email', 'email')) {
+            <small style="color: red">Некоректна електронна пошта</small>
           }
         </div>
       </div>
@@ -37,6 +49,15 @@
       <div class="user-form__field">
         <label for="password">Password</label>
         <input type="password" id="password" placeholder="**********" formControlName="password" />
+
+        <div *ngIf="isInvalid('password')">
+          @if (getError('password', 'required')) {
+            <small style="color: red">Це поле обов'язкове</small>
+          }
+          @if (getError('password', 'minlength')) {
+            <small style="color: red">Пароль повинен містити щонайменше 6 символів</small>
+          }
+        </div>
       </div>
     </div>
 
@@ -44,11 +65,17 @@
       <div class="user-form__field">
         <label for="dataBirth">Date of Birth</label>
         <input
-          type="text"
+          type="date"
           id="dataBirth"
           placeholder="25 January 1990"
           formControlName="dataBirth"
         />
+
+        <div *ngIf="isInvalid('dataBirth')">
+          @if (getError('dataBirth', 'required')) {
+            <small style="color: red">Це поле обов'язкове</small>
+          }
+        </div>
       </div>
 
       <div class="user-form__field">
@@ -59,6 +86,12 @@
           placeholder="San Jose, California, USA"
           formControlName="presentAddress"
         />
+
+        <div *ngIf="isInvalid('presentAddress')">
+          @if (getError('presentAddress', 'required')) {
+            <small style="color: red">Це поле обов'язкове</small>
+          }
+        </div>
       </div>
     </div>
 
@@ -71,11 +104,23 @@
           placeholder="San Jose, California, USA"
           formControlName="address"
         />
+
+        <div *ngIf="isInvalid('address')">
+          @if (getError('address', 'required')) {
+            <small style="color: red">Це поле обов'язкове</small>
+          }
+        </div>
       </div>
 
       <div class="user-form__field">
         <label for="city">City</label>
         <input type="text" id="city" placeholder="San Jose" formControlName="city" />
+
+        <div *ngIf="isInvalid('city')">
+          @if (getError('city', 'required')) {
+            <small style="color: red">Це поле обов'язкове</small>
+          }
+        </div>
       </div>
     </div>
 
@@ -83,24 +128,34 @@
       <div class="user-form__field">
         <label for="postalCode">Postal Code</label>
         <input type="text" id="postalCode" placeholder="45962" formControlName="postalCode" />
+
+        <div *ngIf="isInvalid('postalCode')">
+          @if (getError('postalCode', 'required')) {
+            <small style="color: red">Це поле обов'язкове</small>
+          }
+          @if (getError('postalCode', 'pattern')) {
+            <small style="color: red">
+              Формат поштового індексу невірний. Використовуйте 3–10 літер, цифр, пробілів або
+              дефісів.
+            </small>
+          }
+        </div>
       </div>
 
       <div class="user-form__field">
         <label for="country">Country</label>
         <input type="text" id="country" placeholder="USA" formControlName="country" />
+
+        <div *ngIf="isInvalid('country')">
+          @if (getError('country', 'required')) {
+            <small style="color: red">Це поле обов'язкове</small>
+          }
+        </div>
       </div>
     </div>
 
     <div class="user-form__button">
-      <button type="submit" [disabled]="form.invalid" mat-flat-button>Save</button>
+      <button type="submit" [disabled]="form.invalid" mat-flat-button>Зберегти</button>
     </div>
   </div>
 </form>
-
-<!--
-
-1. Доробити сайдБар
-2. Хедер
-3. поміняти інпути як в проекті
-4. Зроби невелику дизайн систему :root{}!!!!!!
--->

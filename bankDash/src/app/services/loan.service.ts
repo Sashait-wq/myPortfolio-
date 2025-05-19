@@ -103,7 +103,7 @@ const total: Total = { loan: 121312412, repay: 1211, month: 'AWdawdsad12w' };
 export class LoanService {
   constructor() {}
 
-  getLoans(): Observable<{ total: Total; data: Loan[] }> {
+  public getLoans(): Observable<{ total: Total; data: Loan[] }> {
     return of({ total: total, data: ELEMENT_DATA });
   }
 }

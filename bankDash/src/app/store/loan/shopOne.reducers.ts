@@ -14,8 +14,11 @@ const initialState: LoanState = {
 
 export const loanReducer = createReducer(
   initialState,
-  on(loadLoanSuccess, (state) => {
-    debugger;
-    return { ...state };
-  })
+  on(loadLoanSuccess, (state, { total, data }) => ({
+    ...state,
+    total,
+    data
+  }))
 );
+
+// Проблема була в тому, що ми просто збурігали стан без змін.

@@ -1,12 +1,12 @@
-<div class="wrap">
-  <div>
+<div class="layout">
+  <div class="layout__sidebar">
     <app-side-bar></app-side-bar>
   </div>
-  <div class="wrap_content">
-    <div>
+  <div class="layout__main">
+    <div class="layout__header">
       <app-header></app-header>
     </div>
-    <div class="wrap_sideBar-content">
+    <div class="layout__content">
       <router-outlet></router-outlet>
     </div>
   </div>

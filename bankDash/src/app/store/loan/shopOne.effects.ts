@@ -15,7 +15,6 @@ export class LoanEffects {
       switchMap(() =>
         this.service.getLoans().pipe(
           map((loans) => {
-            debugger;
             return loadLoanSuccess(loans);
           })
         )

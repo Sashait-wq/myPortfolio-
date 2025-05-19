@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {
+  AbstractControl,
   FormControl,
   FormGroup,
   isFormControl,
@@ -9,19 +10,7 @@ import {
 } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-
-interface ProfileForm {
-  yourName: FormControl<string | null>;
-  email: FormControl<string | null>;
-  dataBirth: FormControl<string | null>;
-  address: FormControl<string | null>;
-  postalCode: FormControl<number | null>;
-  userName: FormControl<string | null>;
-  password: FormControl<string | null>;
-  presentAddress: FormControl<string | null>;
-  city: FormControl<string | null>;
-  country: FormControl<string | null>;
-}
+import { ProfileForm } from '../../../interfaces/setting.interface';
 
 @Component({
   selector: 'app-profile',
@@ -31,21 +20,34 @@ interface ProfileForm {
 })
 export class ProfileComponent {
   form = new FormGroup<ProfileForm>({
-    yourName: new FormControl<string | null>(null),
+    yourName: new FormControl<string | null>(null, Validators.required),
     email: new FormControl<string | null>(null, [Validators.required, Validators.email]),
-    dataBirth: new FormControl<string | null>(null),
-    address: new FormControl<string | null>(null),
-    postalCode: new FormControl<number | null>(null),
-    userName: new FormControl<string | null>(null),
-    password: new FormControl<string | null>(null),
-    presentAddress: new FormControl<string | null>(null),
-    city: new FormControl<string | null>(null),
-    country: new FormControl<string | null>(null)
+    dataBirth: new FormControl<string | null>(null, Validators.required),
+    address: new FormControl<string | null>(null, Validators.required),
+    postalCode: new FormControl<string | null>(null, [
+      Validators.required,
+      Validators.pattern(/^[A-Za-z0-9\s\-]{3,10}$/)
+    ]),
+    userName: new FormControl<string | null>(null, Validators.required),
+    password: new FormControl<string | null>(null, [Validators.required, Validators.minLength(6)]),
+    presentAddress: new FormControl<string | null>(null, Validators.required),
+    city: new FormControl<string | null>(null, Validators.required),
+    country: new FormControl<string | null>(null, Validators.required)
   });
 
   public save(): void {
     console.log(this.form.value);
     this.form.reset();
+  }
+
+  public isInvalid(controlName: string): boolean {
+    const control: AbstractControl | null = this.form.get(controlName);
+    return !!control && control.invalid && control.touched;
+  }
+
+  public getError(controlName: string, errorCode: string): boolean {
+    const control: AbstractControl | null = this.form.get(controlName);
+    return !!control && control.hasError(errorCode);
   }
 
   protected readonly isFormControl = isFormControl;

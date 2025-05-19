@@ -13,47 +13,47 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    data: { title: 'Dashboard' }
+    data: { title: 'Overview' }
   },
   {
     path: 'transactions',
     component: TransactionsComponent,
-    data: { title: 'transactions' }
+    data: { title: 'Transactions' }
   },
   {
     path: 'credit-cards',
     component: CreditCardsComponent,
-    data: { title: 'credit-cards' }
+    data: { title: 'Credit Cards' }
   },
   {
     path: 'loans',
     component: LoansComponent,
-    data: { title: 'loans' }
+    data: { title: 'Loans' }
   },
   {
     path: 'investments',
     component: InvestmentsComponent,
-    data: { title: 'investments' }
+    data: { title: 'Investments' }
   },
   {
     path: 'settings',
     component: SettingComponent,
-    data: { title: 'settings' }
+    data: { title: 'Setting' }
   },
   {
     path: 'privileges',
     component: MyPrivilegesComponent,
-    data: { title: 'privileges' }
+    data: { title: 'Privileges' }
   },
   {
     path: 'services',
     component: ServicesComponent,
-    data: { title: 'services' }
+    data: { title: 'Services' }
   },
   {
     path: 'accounts',
     component: AccountsComponent,
-    data: { title: 'accounts' }
+    data: { title: 'Accounts' }
   },
   {
     path: '**',

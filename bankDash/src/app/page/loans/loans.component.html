@@ -1,57 +1,104 @@
-<div>
-  <div></div>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
+<div class="loan-overview">
+  <div class="loan-overview__cards">
+    <div class="loan-overview__card">
+      <div class="loan-overview__icon loan-overview__icon--personal">
+        <img src="assets/loanImg/loan-user.svg" />
+      </div>
+      <div class="loan-overview__card-content">
+        <a href="#">Personal Loans</a>
+        <span>$50,000</span>
+      </div>
+    </div>
 
-    <!-- Position Column -->
+    <div class="loan-overview__card">
+      <div class="loan-overview__icon loan-overview__icon--corporate">
+        <img src="assets/loanImg/briefcase.svg" />
+      </div>
+      <div class="loan-overview__card-content">
+        <a href="#">Corporate Loans</a>
+        <span>$100,000</span>
+      </div>
+    </div>
+
+    <div class="loan-overview__card">
+      <div class="loan-overview__icon loan-overview__icon--business">
+        <img src="assets/loanImg/graph.svg" />
+      </div>
+      <div class="loan-overview__card-content">
+        <a href="#">Business Loans</a>
+        <span>$500,000</span>
+      </div>
+    </div>
+
+    <div class="loan-overview__card">
+      <div class="loan-overview__icon loan-overview__icon--custom">
+        <img src="assets/loanImg/support.svg" />
+      </div>
+      <div class="loan-overview__card-content">
+        <a href="#">Custom Loans</a>
+        <span>Choose Money</span>
+      </div>
+    </div>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <caption class="loan-overview__caption">
+      Active Loans Overview
+    </caption>
+
+    <!-- SL No -->
     <ng-container matColumnDef="SL No">
-      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <th mat-header-cell *matHeaderCellDef>SL No</th>
       <td mat-cell *matCellDef="let element">{{ element['SL No'] }}</td>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- Loan Money -->
     <ng-container matColumnDef="Loan Money">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <th mat-header-cell *matHeaderCellDef>Loan Money</th>
       <td mat-cell *matCellDef="let element">{{ element['Loan Money'] }}</td>
     </ng-container>
 
-    <!-- Weight Column -->
+    <!-- Left to repay -->
     <ng-container matColumnDef="Left to repay">
-      <th mat-header-cell *matHeaderCellDef>Weight</th>
+      <th mat-header-cell *matHeaderCellDef>Left to repay</th>
       <td mat-cell *matCellDef="let element">{{ element['Left to repay'] }}</td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Duration -->
     <ng-container matColumnDef="Duration">
-      <th mat-header-cell *matHeaderCellDef>Symbol</th>
+      <th mat-header-cell *matHeaderCellDef>Duration</th>
       <td mat-cell *matCellDef="let element">{{ element['Duration'] }}</td>
     </ng-container>
 
+    <!-- Interest rate -->
     <ng-container matColumnDef="Interest rate">
-      <th mat-header-cell *matHeaderCellDef>Symbol</th>
+      <th mat-header-cell *matHeaderCellDef>Interest Rate</th>
       <td mat-cell *matCellDef="let element">{{ element['Interest rate'] }}</td>
     </ng-container>
 
+    <!-- Installment -->
     <ng-container matColumnDef="Installment">
-      <th mat-header-cell *matHeaderCellDef>Symbol</th>
+      <th mat-header-cell *matHeaderCellDef>Installment</th>
       <td mat-cell *matCellDef="let element">{{ element['Installment'] }}</td>
     </ng-container>
 
+    <!-- Repay -->
     <ng-container matColumnDef="Repay">
-      <th mat-header-cell *matHeaderCellDef>Symbol</th>
-      <td mat-cell *matCellDef="let element"><button mat-stroked-button>Save</button></td>
+      <th mat-header-cell *matHeaderCellDef>Repay</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-stroked-button>Save</button>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <div class="table-footer">
-    <div class="table-footer__total">
-      <p></p>
-      <p></p>
-      <p></p>
+  <div class="loan-overview__footer">
+    <div class="loan-overview__footer-summary">
+      <p>{{ total?.month }}</p>
+      <p>{{ total?.loan }}</p>
+      <p>{{ total?.repay }}</p>
     </div>
   </div>
 </div>
