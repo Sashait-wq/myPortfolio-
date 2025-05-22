@@ -3,10 +3,11 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterOutlet } from '@angular/router';
 import { LoginService } from './services/login.service';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 @Component({
   selector: 'app-root',
-  imports: [SideBarComponent, HeaderComponent, RouterOutlet],
+  imports: [SideBarComponent, HeaderComponent, RouterOutlet, RegistrationComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

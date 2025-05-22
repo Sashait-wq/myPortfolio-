@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatButton } from '@angular/material/button';
-import { Loan, Total } from '../../interfaces/loan.interface';
+import { Loan, Total } from '../../store/loan/loan.interface';
 import { Store } from '@ngrx/store';
 import { loadLoan } from '../../store/loan/shopOne.action';
 import { loanSelector } from '../../store/loan/shopOne.selectors';

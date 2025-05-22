@@ -1,7 +1,6 @@
 <form class="user-form" [formGroup]="form" (ngSubmit)="save()">
-  <div class="user-form__avatar"></div>
-
   <div class="user-form__content">
+    <h2 class="user-form__title">Registration</h2>
     <div class="user-form__row">
       <div class="user-form__field">
         <label>Your Name</label>
@@ -58,8 +57,8 @@
 
     <div class="user-form__row">
       <div class="user-form__field">
-        <label for="dateOfBirth">Date of Birth</label>
-        <input placeholder="25 January 1990" formControlName="dateOfBirth" />
+        <label>Date of Birth</label>
+        <input type="date" placeholder="25 January 1990" formControlName="dateOfBirth" />
 
         <div *ngIf="isInvalid('dateOfBirth')">
           @if (getError('dateOfBirth', 'required')) {
@@ -139,7 +138,7 @@
     </div>
 
     <div class="user-form__button">
-      <button type="submit" [disabled]="form.invalid" mat-flat-button>Зберегти</button>
+      <button type="submit" [disabled]="form.invalid" mat-flat-button>Registration</button>
     </div>
   </div>
 </form>

@@ -1,4 +1,4 @@
-import { Loan, Total } from '../../interfaces/loan.interface';
+import { Loan, Total } from './loan.interface';
 import { createReducer, on } from '@ngrx/store';
 import { loadLoanSuccess } from './shopOne.action';
 

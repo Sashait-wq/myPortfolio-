@@ -3,7 +3,7 @@ import { MatTableModule } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { transactionsLoad } from '../../store/transactions/transactions.action';
 import { transactionsSelector } from '../../store/transactions/transactions.selectors';
-import { TransactionItem } from '../../interfaces/transactions.interface';
+import { TransactionItem } from '../../store/transactions/transactions.interface';
 
 @Component({
   selector: 'app-transactions',

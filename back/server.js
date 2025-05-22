@@ -1,17 +1,17 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const fs = require('fs').promises;
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { authMiddleware, JWT_SECRET } = require('./middleware/auth');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const fs = require("fs").promises;
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { authMiddleware, JWT_SECRET } = require("./middleware/auth");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const USERS_FILE = './users.json';
-const CARDS_FILE = './cards.json';
-const TRANSACTIONS_FILE = './transactions.json';
-const LOANS_FILE = './loans.json';
+const USERS_FILE = "./users.json";
+const CARDS_FILE = "./cards.json";
+const TRANSACTIONS_FILE = "./transactions.json";
+const LOANS_FILE = "./loans.json";
 
 // Middleware
 app.use(cors());
@@ -20,7 +20,7 @@ app.use(express.json());
 // Вспомогательные функции для работы с файлами
 async function readUsers() {
   try {
-    const data = await fs.readFile(USERS_FILE, 'utf8');
+    const data = await fs.readFile(USERS_FILE, "utf8");
     return JSON.parse(data);
   } catch (error) {
     return { users: [] };
@@ -33,7 +33,7 @@ async function writeUsers(users) {
 
 async function readCards() {
   try {
-    const data = await fs.readFile(CARDS_FILE, 'utf8');
+    const data = await fs.readFile(CARDS_FILE, "utf8");
     return JSON.parse(data);
   } catch (error) {
     return { cards: [] };
@@ -46,7 +46,7 @@ async function writeCards(cards) {
 
 async function readTransactions() {
   try {
-    const data = await fs.readFile(TRANSACTIONS_FILE, 'utf8');
+    const data = await fs.readFile(TRANSACTIONS_FILE, "utf8");
     return JSON.parse(data);
   } catch (error) {
     return { transactions: [] };
@@ -59,7 +59,7 @@ async function writeTransactions(transactions) {
 
 async function readLoans() {
   try {
-    const data = await fs.readFile(LOANS_FILE, 'utf8');
+    const data = await fs.readFile(LOANS_FILE, "utf8");
     return JSON.parse(data);
   } catch (error) {
     return { loans: [] };
@@ -76,35 +76,35 @@ function maskCardNumber(cardNumber) {
 }
 
 // Регистрация с расширенным профилем
-app.post('/api/register', async (req, res) => {
+app.post("/api/register", async (req, res) => {
   try {
-    const { 
-      username, 
+    const {
+      username,
       password,
       email,
       fullName,
       dateOfBirth,
       presentAddress,
-      permanentAddress,
+      address,
       city,
       postalCode,
-      country
+      country,
     } = req.body;
 
     if (!username || !password || !email) {
-      return res.status(400).json({ 
-        message: 'Необхідно вказати ім\'я користувача, пароль та email' 
+      return res.status(400).json({
+        message: "Необхідно вказати ім'я користувача, пароль та email",
       });
     }
 
     const usersData = await readUsers();
-    
-    if (usersData.users.some(user => user.username === username)) {
-      return res.status(400).json({ message: 'Користувач вже існує' });
+
+    if (usersData.users.some((user) => user.username === username)) {
+      return res.status(400).json({ message: "Користувач вже існує" });
     }
 
-    if (usersData.users.some(user => user.email === email)) {
-      return res.status(400).json({ message: 'Email вже використовується' });
+    if (usersData.users.some((user) => user.email === email)) {
+      return res.status(400).json({ message: "Email вже використовується" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -117,112 +117,109 @@ app.post('/api/register', async (req, res) => {
       profile: {
         fullName: fullName || username,
         dateOfBirth: dateOfBirth || null,
-        presentAddress: presentAddress || '',
-        permanentAddress: permanentAddress || '',
-        city: city || '',
-        postalCode: postalCode || '',
-        country: country || '',
+        presentAddress: presentAddress || "",
+        address: address || "",
+        city: city || "",
+        postalCode: postalCode || "",
+        country: country || "",
         avatarUrl: null,
         createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      }
+        updatedAt: new Date().toISOString(),
+      },
     };
 
     usersData.users.push(newUser);
     await writeUsers(usersData);
 
-    res.status(201).json({ 
-      message: 'Користувача успішно зареєстровано',
+    res.status(201).json({
+      message: "Користувача успішно зареєстровано",
       user: {
         id: newUser.id,
         username: newUser.username,
         email: newUser.email,
         profile: {
           ...newUser.profile,
-          password: undefined
-        }
-      }
+          password: undefined,
+        },
+      },
     });
   } catch (error) {
-    res.status(500).json({ message: 'Помилка при реєстрації' });
+    res.status(500).json({ message: "Помилка при реєстрації" });
   }
 });
 
 // Логин
-app.post('/api/login', async (req, res) => {
+app.post("/api/login", async (req, res) => {
   try {
     const { username, password } = req.body;
-
+    console.log("Login attempt:", { username, password });
     const usersData = await readUsers();
-    const user = usersData.users.find(u => u.username === username);
+    const user = usersData.users.find((u) => u.username === username);
 
     if (!user) {
-      return res.status(401).json({ message: 'Невірні облікові дані' });
+      return res.status(401).json({ message: "Невірні облікові дані" });
     }
-
-    const isValidPassword = await bcrypt.compare(password, user.password);
+    const isValidPassword = password === user.password;
 
     if (!isValidPassword) {
-      return res.status(401).json({ message: 'Невірні облікові дані' });
+      return res.status(401).json({ message: "Невірні облікові дані" });
     }
-
     const token = jwt.sign(
       { userId: user.id, username: user.username },
       JWT_SECRET,
-      { expiresIn: '24h' }
+      { expiresIn: "24h" },
     );
-
     res.json({
       token,
       user: {
         id: user.id,
-        username: user.username
-      }
+        username: user.username,
+      },
     });
   } catch (error) {
-    res.status(500).json({ message: 'Помилка при вході' });
+    console.error("Login error:", error);
+    res.status(500).json({ message: "Помилка при вході" });
   }
 });
-
 // Получение карт пользователя
-app.get('/api/cards', authMiddleware, async (req, res) => {
+app.get("/api/cards", authMiddleware, async (req, res) => {
   try {
     const cardsData = await readCards();
     const userCards = cardsData.cards
-      .filter(card => card.userId === req.user.userId)
-      .map(card => ({
+      .filter((card) => card.userId === req.user.userId)
+      .map((card) => ({
         ...card,
-        cardNumber: maskCardNumber(card.cardNumber)
+        cardNumber: maskCardNumber(card.cardNumber),
       }));
 
     res.json(userCards);
   } catch (error) {
-    res.status(500).json({ message: 'Помилка при отриманні карток' });
+    res.status(500).json({ message: "Помилка при отриманні карток" });
   }
 });
 
 // Добавление новой карты
-app.post('/api/cards', authMiddleware, async (req, res) => {
+app.post("/api/cards", authMiddleware, async (req, res) => {
   try {
     const { cardType, nameOnCard, cardNumber, expirationDate } = req.body;
 
     if (!cardType || !nameOnCard || !cardNumber || !expirationDate) {
-      return res.status(400).json({ 
-        message: 'Необхідно вказати всі дані картки' 
+      return res.status(400).json({
+        message: "Необхідно вказати всі дані картки",
       });
     }
 
     if (!/^\d{16}$/.test(cardNumber)) {
-      return res.status(400).json({ 
-        message: 'Невірний формат номера картки' 
+      return res.status(400).json({
+        message: "Невірний формат номера картки",
       });
     }
 
     const cardsData = await readCards();
-    
-    if (cardsData.cards.some(card => card.cardNumber === cardNumber)) {
-      return res.status(400).json({ 
-        message: 'Така картка вже існує' 
+
+    if (cardsData.cards.some((card) => card.cardNumber === cardNumber)) {
+      return res.status(400).json({
+        message: "Така картка вже існує",
       });
     }
 
@@ -233,7 +230,7 @@ app.post('/api/cards', authMiddleware, async (req, res) => {
       nameOnCard,
       cardNumber,
       expirationDate,
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     };
 
     cardsData.cards.push(newCard);
@@ -241,39 +238,42 @@ app.post('/api/cards', authMiddleware, async (req, res) => {
 
     res.status(201).json({
       ...newCard,
-      cardNumber: maskCardNumber(cardNumber)
+      cardNumber: maskCardNumber(cardNumber),
     });
   } catch (error) {
-    res.status(500).json({ message: 'Помилка при додаванні картки' });
+    res.status(500).json({ message: "Помилка при додаванні картки" });
   }
 });
 
 // Добавление транзакции
-app.post('/api/transactions', authMiddleware, async (req, res) => {
+app.post("/api/transactions", authMiddleware, async (req, res) => {
   try {
     const { description, type, cardId, amount, date } = req.body;
 
     if (!description || !type || !cardId || !amount || !date) {
       return res.status(400).json({
-        message: 'Необхідно вказати всі дані транзакції'
+        message: "Необхідно вказати всі дані транзакції",
       });
     }
 
     // Проверяем существование карты и принадлежность пользователю
     const cardsData = await readCards();
-    const card = cardsData.cards.find(c => c.id === cardId && c.userId === req.user.userId);
+    const card = cardsData.cards.find(
+      (c) => c.id === cardId && c.userId === req.user.userId,
+    );
 
     if (!card) {
       return res.status(404).json({
-        message: 'Картку не знайдено'
+        message: "Картку не знайдено",
       });
     }
 
     const transactionsData = await readTransactions();
-    
+
     const newTransaction = {
       id: Date.now().toString(),
-      transactionId: '#' + Math.random().toString(36).substr(2, 8).toUpperCase(),
+      transactionId:
+        "#" + Math.random().toString(36).substr(2, 8).toUpperCase(),
       userId: req.user.userId,
       description,
       type,
@@ -281,7 +281,7 @@ app.post('/api/transactions', authMiddleware, async (req, res) => {
       cardNumber: maskCardNumber(card.cardNumber),
       amount: parseFloat(amount),
       date: new Date(date).toISOString(),
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     };
 
     transactionsData.transactions.push(newTransaction);
@@ -289,52 +289,53 @@ app.post('/api/transactions', authMiddleware, async (req, res) => {
 
     res.status(201).json(newTransaction);
   } catch (error) {
-    res.status(500).json({ message: 'Помилка при додаванні транзакції' });
+    res.status(500).json({ message: "Помилка при додаванні транзакції" });
   }
 });
 
 // Получение транзакций с фильтрацией
-app.get('/api/transactions', authMiddleware, async (req, res) => {
+app.get("/api/transactions", authMiddleware, async (req, res) => {
   try {
     const { type, startDate, endDate, minAmount, maxAmount } = req.query;
-    
+
     const transactionsData = await readTransactions();
-    let userTransactions = transactionsData.transactions
-      .filter(transaction => transaction.userId === req.user.userId);
+    let userTransactions = transactionsData.transactions.filter(
+      (transaction) => transaction.userId === req.user.userId,
+    );
 
     // Применяем фильтры
     if (type) {
       switch (type) {
-        case 'income':
-          userTransactions = userTransactions.filter(t => t.amount > 0);
+        case "income":
+          userTransactions = userTransactions.filter((t) => t.amount > 0);
           break;
-        case 'expense':
-          userTransactions = userTransactions.filter(t => t.amount < 0);
+        case "expense":
+          userTransactions = userTransactions.filter((t) => t.amount < 0);
           break;
       }
     }
 
     if (startDate) {
-      userTransactions = userTransactions.filter(t => 
-        new Date(t.date) >= new Date(startDate)
+      userTransactions = userTransactions.filter(
+        (t) => new Date(t.date) >= new Date(startDate),
       );
     }
 
     if (endDate) {
-      userTransactions = userTransactions.filter(t => 
-        new Date(t.date) <= new Date(endDate)
+      userTransactions = userTransactions.filter(
+        (t) => new Date(t.date) <= new Date(endDate),
       );
     }
 
     if (minAmount) {
-      userTransactions = userTransactions.filter(t => 
-        Math.abs(t.amount) >= parseFloat(minAmount)
+      userTransactions = userTransactions.filter(
+        (t) => Math.abs(t.amount) >= parseFloat(minAmount),
       );
     }
 
     if (maxAmount) {
-      userTransactions = userTransactions.filter(t => 
-        Math.abs(t.amount) <= parseFloat(maxAmount)
+      userTransactions = userTransactions.filter(
+        (t) => Math.abs(t.amount) <= parseFloat(maxAmount),
       );
     }
 
@@ -345,144 +346,161 @@ app.get('/api/transactions', authMiddleware, async (req, res) => {
       transactions: userTransactions,
       summary: {
         total: userTransactions.reduce((sum, t) => sum + t.amount, 0),
-        income: userTransactions.filter(t => t.amount > 0).reduce((sum, t) => sum + t.amount, 0),
-        expense: Math.abs(userTransactions.filter(t => t.amount < 0).reduce((sum, t) => sum + t.amount, 0))
-      }
+        income: userTransactions
+          .filter((t) => t.amount > 0)
+          .reduce((sum, t) => sum + t.amount, 0),
+        expense: Math.abs(
+          userTransactions
+            .filter((t) => t.amount < 0)
+            .reduce((sum, t) => sum + t.amount, 0),
+        ),
+      },
     });
   } catch (error) {
-    res.status(500).json({ message: 'Помилка при отриманні транзакцій' });
+    res.status(500).json({ message: "Помилка при отриманні транзакцій" });
   }
 });
 
 // Получение активных кредитов пользователя
-app.get('/api/loans', authMiddleware, async (req, res) => {
+app.get("/api/loans", authMiddleware, async (req, res) => {
   try {
     const { status } = req.query;
     const loansData = await readLoans();
-    let userLoans = loansData.loans.filter(loan => loan.userId === req.user.userId);
+    let userLoans = loansData.loans.filter(
+      (loan) => loan.userId === req.user.userId,
+    );
 
     // Фильтрация по статусу
     if (status) {
-      userLoans = userLoans.filter(loan => loan.status === status);
+      userLoans = userLoans.filter((loan) => loan.status === status);
     }
 
     // Добавляем расчетные поля
-    userLoans = userLoans.map(loan => {
+    userLoans = userLoans.map((loan) => {
       const monthlyInterest = (loan.amount * (loan.interestRate / 100)) / 12;
-      const totalAmount = loan.amount + (monthlyInterest * loan.duration);
+      const totalAmount = loan.amount + monthlyInterest * loan.duration;
       const leftToRepay = totalAmount - loan.paidAmount;
 
       return {
         ...loan,
         leftToRepay: Math.round(leftToRepay * 100) / 100,
-        installment: Math.round((totalAmount / loan.duration) * 100) / 100
+        installment: Math.round((totalAmount / loan.duration) * 100) / 100,
       };
     });
 
     // Считаем общую статистику
-    const totalStats = userLoans.reduce((acc, loan) => {
-      acc.totalAmount += loan.amount;
-      acc.totalLeftToRepay += loan.leftToRepay;
-      acc.totalMonthlyPayment += loan.installment;
-      return acc;
-    }, {
-      totalAmount: 0,
-      totalLeftToRepay: 0,
-      totalMonthlyPayment: 0
-    });
+    const totalStats = userLoans.reduce(
+      (acc, loan) => {
+        acc.totalAmount += loan.amount;
+        acc.totalLeftToRepay += loan.leftToRepay;
+        acc.totalMonthlyPayment += loan.installment;
+        return acc;
+      },
+      {
+        totalAmount: 0,
+        totalLeftToRepay: 0,
+        totalMonthlyPayment: 0,
+      },
+    );
 
     res.json({
       loans: userLoans,
       summary: {
         totalAmount: Math.round(totalStats.totalAmount * 100) / 100,
         totalLeftToRepay: Math.round(totalStats.totalLeftToRepay * 100) / 100,
-        totalMonthlyPayment: Math.round(totalStats.totalMonthlyPayment * 100) / 100
-      }
+        totalMonthlyPayment:
+          Math.round(totalStats.totalMonthlyPayment * 100) / 100,
+      },
     });
   } catch (error) {
-    res.status(500).json({ message: 'Помилка при отриманні кредитів' });
+    res.status(500).json({ message: "Помилка при отриманні кредитів" });
   }
 });
 
 // Добавление нового кредита
-app.post('/api/loans', authMiddleware, async (req, res) => {
+app.post("/api/loans", authMiddleware, async (req, res) => {
   try {
     const { amount, duration, interestRate } = req.body;
 
     if (!amount || !duration || !interestRate) {
       return res.status(400).json({
-        message: 'Необхідно вказати суму, термін та відсоткову ставку кредиту'
+        message: "Необхідно вказати суму, термін та відсоткову ставку кредиту",
       });
     }
 
     const loansData = await readLoans();
-    
+
     const newLoan = {
       id: Date.now().toString(),
       userId: req.user.userId,
-      loanNumber: 'L' + Math.random().toString(36).substr(2, 8).toUpperCase(),
+      loanNumber: "L" + Math.random().toString(36).substr(2, 8).toUpperCase(),
       amount: parseFloat(amount),
       duration: parseInt(duration),
       interestRate: parseFloat(interestRate),
-      status: 'active',
+      status: "active",
       paidAmount: 0,
       startDate: new Date().toISOString(),
-      nextPaymentDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
-      createdAt: new Date().toISOString()
+      nextPaymentDate: new Date(
+        Date.now() + 30 * 24 * 60 * 60 * 1000,
+      ).toISOString(),
+      createdAt: new Date().toISOString(),
     };
 
     loansData.loans.push(newLoan);
     await writeLoans(loansData);
 
     // Рассчитываем дополнительные поля
-    const monthlyInterest = (newLoan.amount * (newLoan.interestRate / 100)) / 12;
-    const totalAmount = newLoan.amount + (monthlyInterest * newLoan.duration);
+    const monthlyInterest =
+      (newLoan.amount * (newLoan.interestRate / 100)) / 12;
+    const totalAmount = newLoan.amount + monthlyInterest * newLoan.duration;
 
     res.status(201).json({
       ...newLoan,
       leftToRepay: totalAmount,
-      installment: Math.round((totalAmount / newLoan.duration) * 100) / 100
+      installment: Math.round((totalAmount / newLoan.duration) * 100) / 100,
     });
   } catch (error) {
-    res.status(500).json({ message: 'Помилка при створенні кредиту' });
+    res.status(500).json({ message: "Помилка при створенні кредиту" });
   }
 });
 
 // Внесение платежа по кредиту
-app.post('/api/loans/:loanId/payment', authMiddleware, async (req, res) => {
+app.post("/api/loans/:loanId/payment", authMiddleware, async (req, res) => {
   try {
     const { loanId } = req.params;
     const { amount } = req.body;
 
     if (!amount) {
       return res.status(400).json({
-        message: 'Необхідно вказати суму платежу'
+        message: "Необхідно вказати суму платежу",
       });
     }
 
     const loansData = await readLoans();
     const loanIndex = loansData.loans.findIndex(
-      loan => loan.id === loanId && loan.userId === req.user.userId
+      (loan) => loan.id === loanId && loan.userId === req.user.userId,
     );
 
     if (loanIndex === -1) {
       return res.status(404).json({
-        message: 'Кредит не знайдено'
+        message: "Кредит не знайдено",
       });
     }
 
     const loan = loansData.loans[loanIndex];
-    
+
     // Обновляем информацию о платеже
     loan.paidAmount += parseFloat(amount);
-    loan.nextPaymentDate = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
+    loan.nextPaymentDate = new Date(
+      Date.now() + 30 * 24 * 60 * 60 * 1000,
+    ).toISOString();
 
     // Проверяем, погашен ли кредит полностью
     const monthlyInterest = (loan.amount * (loan.interestRate / 100)) / 12;
-    const totalAmount = loan.amount + (monthlyInterest * loan.duration);
+    const totalAmount = loan.amount + monthlyInterest * loan.duration;
 
     if (loan.paidAmount >= totalAmount) {
-      loan.status = 'completed';
+      loan.status = "completed";
     }
 
     await writeLoans(loansData);
@@ -491,41 +509,42 @@ app.post('/api/loans/:loanId/payment', authMiddleware, async (req, res) => {
     const transactionsData = await readTransactions();
     const paymentTransaction = {
       id: Date.now().toString(),
-      transactionId: '#' + Math.random().toString(36).substr(2, 8).toUpperCase(),
+      transactionId:
+        "#" + Math.random().toString(36).substr(2, 8).toUpperCase(),
       userId: req.user.userId,
       description: `Платіж за кредитом ${loan.loanNumber}`,
-      type: 'Loan Payment',
+      type: "Loan Payment",
       amount: -parseFloat(amount),
       date: new Date().toISOString(),
       loanId: loan.id,
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     };
 
     transactionsData.transactions.push(paymentTransaction);
     await writeTransactions(transactionsData);
 
     res.json({
-      message: 'Платіж успішно внесено',
+      message: "Платіж успішно внесено",
       loan: {
         ...loan,
         leftToRepay: totalAmount - loan.paidAmount,
-        installment: Math.round((totalAmount / loan.duration) * 100) / 100
+        installment: Math.round((totalAmount / loan.duration) * 100) / 100,
       },
-      transaction: paymentTransaction
+      transaction: paymentTransaction,
     });
   } catch (error) {
-    res.status(500).json({ message: 'Помилка при внесенні платежу' });
+    res.status(500).json({ message: "Помилка при внесенні платежу" });
   }
 });
 
 // Получение профиля пользователя
-app.get('/api/profile', authMiddleware, async (req, res) => {
+app.get("/api/profile", authMiddleware, async (req, res) => {
   try {
     const usersData = await readUsers();
-    const user = usersData.users.find(u => u.id === req.user.userId);
+    const user = usersData.users.find((u) => u.id === req.user.userId);
 
     if (!user) {
-      return res.status(404).json({ message: 'Користувача не знайдено' });
+      return res.status(404).json({ message: "Користувача не знайдено" });
     }
 
     res.json({
@@ -534,41 +553,43 @@ app.get('/api/profile', authMiddleware, async (req, res) => {
       email: user.email,
       profile: {
         ...user.profile,
-        password: undefined
-      }
+        password: undefined,
+      },
     });
   } catch (error) {
-    res.status(500).json({ message: 'Помилка при отриманні профілю' });
+    res.status(500).json({ message: "Помилка при отриманні профілю" });
   }
 });
 
 // Обновление профиля пользователя
-app.put('/api/profile', authMiddleware, async (req, res) => {
+app.put("/api/profile", authMiddleware, async (req, res) => {
   try {
     const {
       email,
       fullName,
       dateOfBirth,
       presentAddress,
-      permanentAddress,
+      address,
       city,
       postalCode,
-      country
+      country,
     } = req.body;
 
     const usersData = await readUsers();
-    const userIndex = usersData.users.findIndex(u => u.id === req.user.userId);
+    const userIndex = usersData.users.findIndex(
+      (u) => u.id === req.user.userId,
+    );
 
     if (userIndex === -1) {
-      return res.status(404).json({ message: 'Користувача не знайдено' });
+      return res.status(404).json({ message: "Користувача не знайдено" });
     }
 
     const user = usersData.users[userIndex];
 
     // Проверка email на уникальность, если он изменился
     if (email && email !== user.email) {
-      if (usersData.users.some(u => u.id !== user.id && u.email === email)) {
-        return res.status(400).json({ message: 'Email вже використовується' });
+      if (usersData.users.some((u) => u.id !== user.id && u.email === email)) {
+        return res.status(400).json({ message: "Email вже використовується" });
       }
       user.email = email;
     }
@@ -579,56 +600,61 @@ app.put('/api/profile', authMiddleware, async (req, res) => {
       fullName: fullName || user.profile.fullName,
       dateOfBirth: dateOfBirth || user.profile.dateOfBirth,
       presentAddress: presentAddress || user.profile.presentAddress,
-      permanentAddress: permanentAddress || user.profile.permanentAddress,
+      address: address || user.profile.address,
       city: city || user.profile.city,
       postalCode: postalCode || user.profile.postalCode,
       country: country || user.profile.country,
-      updatedAt: new Date().toISOString()
+      updatedAt: new Date().toISOString(),
     };
 
     await writeUsers(usersData);
 
     res.json({
-      message: 'Профіль успішно оновлено',
+      message: "Профіль успішно оновлено",
       user: {
         id: user.id,
         username: user.username,
         email: user.email,
         profile: {
           ...user.profile,
-          password: undefined
-        }
-      }
+          password: undefined,
+        },
+      },
     });
   } catch (error) {
-    res.status(500).json({ message: 'Помилка при оновленні профілю' });
+    res.status(500).json({ message: "Помилка при оновленні профілю" });
   }
 });
 
 // Изменение пароля
-app.put('/api/profile/password', authMiddleware, async (req, res) => {
+app.put("/api/profile/password", authMiddleware, async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
 
     if (!currentPassword || !newPassword) {
-      return res.status(400).json({ 
-        message: 'Необхідно вказати поточний та новий пароль' 
+      return res.status(400).json({
+        message: "Необхідно вказати поточний та новий пароль",
       });
     }
 
     const usersData = await readUsers();
-    const userIndex = usersData.users.findIndex(u => u.id === req.user.userId);
+    const userIndex = usersData.users.findIndex(
+      (u) => u.id === req.user.userId,
+    );
 
     if (userIndex === -1) {
-      return res.status(404).json({ message: 'Користувача не знайдено' });
+      return res.status(404).json({ message: "Користувача не знайдено" });
     }
 
     const user = usersData.users[userIndex];
 
     // Проверяем текущий пароль
-    const isValidPassword = await bcrypt.compare(currentPassword, user.password);
+    const isValidPassword = await bcrypt.compare(
+      currentPassword,
+      user.password,
+    );
     if (!isValidPassword) {
-      return res.status(400).json({ message: 'Невірний поточний пароль' });
+      return res.status(400).json({ message: "Невірний поточний пароль" });
     }
 
     // Хешируем и сохраняем новый пароль
@@ -638,18 +664,18 @@ app.put('/api/profile/password', authMiddleware, async (req, res) => {
 
     await writeUsers(usersData);
 
-    res.json({ message: 'Пароль успішно змінено' });
+    res.json({ message: "Пароль успішно змінено" });
   } catch (error) {
-    res.status(500).json({ message: 'Помилка при зміні пароля' });
+    res.status(500).json({ message: "Помилка при зміні пароля" });
   }
 });
 
 // Тестовый маршрут
-app.get('/api/test', (req, res) => {
-  res.json({ message: 'Бэкенд работает!' });
+app.get("/api/test", (req, res) => {
+  res.json({ message: "Бэкенд работает!" });
 });
 
 // Запуск сервера
 app.listen(PORT, () => {
   console.log(`Сервер запущено на порту ${PORT}`);
-}); 
+});

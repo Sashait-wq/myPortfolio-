@@ -5,11 +5,11 @@ import { map, switchMap } from 'rxjs';
 import { TransactionService } from '../../services/transaction.service';
 
 @Injectable()
-export class LoanEffects {
+export class transactionsEffect {
   private service = inject(TransactionService);
   private action = inject(Actions);
 
-  loadLoan$ = createEffect(() =>
+  transactionsLoadEffect$ = createEffect(() =>
     this.action.pipe(
       ofType(transactionsLoad),
       switchMap(() =>

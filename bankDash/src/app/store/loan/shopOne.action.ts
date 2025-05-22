@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Loan, Total } from '../../interfaces/loan.interface';
+import { Loan, Total } from './loan.interface';
 
 export enum LoanActionTypes {
   LoadLoan = 'LoadLoan',

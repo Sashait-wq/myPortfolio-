@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Loan, Total } from '../interfaces/loan.interface';
+import { Loan, Total } from '../store/loan/loan.interface';
 
 const ELEMENT_DATA: Loan[] = [
   {

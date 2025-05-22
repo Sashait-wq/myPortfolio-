@@ -8,52 +8,67 @@ import { InvestmentsComponent } from './page/investments/investments.component';
 import { SettingComponent } from './page/setting/setting.component';
 import { MyPrivilegesComponent } from './page/my-privileges/my-privileges.component';
 import { ServicesComponent } from './page/services/services.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { registrationGuard } from './guards/registration.guard';
 
 export const routes: Routes = [
   {
+    path: 'registration',
+    component: RegistrationComponent
+  },
+  {
     path: 'dashboard',
     component: DashboardComponent,
-    data: { title: 'Overview' }
+    data: { title: 'Overview' },
+    canActivate: [registrationGuard]
   },
   {
     path: 'transactions',
     component: TransactionsComponent,
-    data: { title: 'Transactions' }
+    data: { title: 'Transactions' },
+    canActivate: [registrationGuard]
   },
   {
     path: 'credit-cards',
     component: CreditCardsComponent,
-    data: { title: 'Credit Cards' }
+    data: { title: 'Credit Cards' },
+    canActivate: [registrationGuard]
   },
   {
     path: 'loans',
     component: LoansComponent,
-    data: { title: 'Loans' }
+    data: { title: 'Loans' },
+    canActivate: [registrationGuard]
   },
   {
     path: 'investments',
     component: InvestmentsComponent,
-    data: { title: 'Investments' }
+    data: { title: 'Investments' },
+    canActivate: [registrationGuard]
   },
   {
     path: 'settings',
     component: SettingComponent,
-    data: { title: 'Setting' }
+    data: { title: 'Setting' },
+    canActivate: [registrationGuard]
   },
   {
     path: 'privileges',
     component: MyPrivilegesComponent,
-    data: { title: 'Privileges' }
+    data: { title: 'Privileges' },
+    canActivate: [registrationGuard]
   },
   {
     path: 'services',
     component: ServicesComponent,
-    data: { title: 'Services' }
+    data: { title: 'Services' },
+    canActivate: [registrationGuard]
   },
   {
     path: 'accounts',
     component: AccountsComponent,
-    data: { title: 'Accounts' }
+    data: { title: 'Accounts' },
+    canActivate: [registrationGuard]
   },
   {
     path: '**',

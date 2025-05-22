@@ -1,3 +1,40 @@
 {
-  "users": [{ "username": "user123", "password": "password123"}]
-} 
+  "users": [
+    {
+      "id": "1747933857777",
+      "username": "wdawdawd",
+      "password": "$2a$10$.m19rPwp8FP86sy99g9CB.saVyApO6Q4277RjS.4DPrJ.yIksktXi",
+      "email": "sevchenoolexandr19@gmail.com",
+      "profile": {
+        "fullName": "фцвфцв",
+        "dateOfBirth": "2025-05-25",
+        "presentAddress": "awdawdawd",
+        "address": "awdawdaw",
+        "city": "dawdawdawd",
+        "postalCode": "wd23",
+        "country": "Україна",
+        "avatarUrl": null,
+        "createdAt": "2025-05-22T17:10:57.777Z",
+        "updatedAt": "2025-05-22T17:10:57.777Z"
+      }
+    },
+    {
+      "id": "1747935369239",
+      "username": "wdawdawdw",
+      "password": "$2a$10$/BCi0KRRVDfW.Ahyittyt.wtPXBvyWenC7G.lzQuWy9Vd4LNftdY2",
+      "email": "sevchenoolexawwwndr19@gmail.com",
+      "profile": {
+        "fullName": "фцвфцвawd",
+        "dateOfBirth": "2025-04-30",
+        "presentAddress": "awdawdawds",
+        "address": "awdawdaww",
+        "city": "dawdawdawda",
+        "postalCode": "wd23dw",
+        "country": "Україна",
+        "avatarUrl": null,
+        "createdAt": "2025-05-22T17:36:09.239Z",
+        "updatedAt": "2025-05-22T17:36:09.239Z"
+      }
+    }
+  ]
+}

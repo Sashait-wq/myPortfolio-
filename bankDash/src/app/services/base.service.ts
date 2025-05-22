@@ -16,10 +16,14 @@ export class BaseService {
     });
   }
   protected get(url: string): Observable<any> {
-    return this.http.get(this.baseUrl + url);
+    return this.http.get(this.baseUrl + url, { headers: this.header() });
   }
 
   protected post(url: string, data: any, params?: any): Observable<any> {
     return this.http.post(this.baseUrl + url, data, { headers: this.header(), params });
   }
 }
+
+// Конект з беком
+// Доробити логін
+// І робиби гуарди

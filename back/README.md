@@ -33,7 +33,7 @@ npm start
     "fullName": "Іван Іванов",
     "dateOfBirth": "1990-01-25",
     "presentAddress": "Київ, Україна",
-    "permanentAddress": "Київ, Україна",
+    "address": "Київ, Україна",
     "city": "Київ",
     "postalCode": "01001",
     "country": "Україна"
@@ -61,7 +61,7 @@ npm start
       "fullName": "Іван Іванов",
       "dateOfBirth": "1990-01-25",
       "presentAddress": "Київ, Україна",
-      "permanentAddress": "Київ, Україна",
+      "address": "Київ, Україна",
       "city": "Київ",
       "postalCode": "01001",
       "country": "Україна",
@@ -79,7 +79,7 @@ npm start
     "fullName": "Іван Іванов",
     "dateOfBirth": "1990-01-25",
     "presentAddress": "Нова адреса",
-    "permanentAddress": "Постійна адреса",
+    "address": "Постійна адреса",
     "city": "Нове місто",
     "postalCode": "12345",
     "country": "Україна"

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TransactionItem } from '../interfaces/transactions.interface';
+import { TransactionItem } from '../store/transactions/transactions.interface';
 import { Observable, of } from 'rxjs';
 
 export const transactions: TransactionItem[] = [
