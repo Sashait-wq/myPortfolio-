@@ -22,3 +22,5 @@ module.exports = {
   authMiddleware,
   JWT_SECRET,
 };
+
+// Підключити бекен

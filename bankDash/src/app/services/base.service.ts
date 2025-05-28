@@ -10,9 +10,10 @@ export class BaseService {
   constructor(private http: HttpClient) {}
 
   protected header(): HttpHeaders {
+    const token = localStorage.getItem('token');
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Bearer jwt'
+      Authorization: `Bearer ${token}`
     });
   }
   protected get(url: string): Observable<any> {

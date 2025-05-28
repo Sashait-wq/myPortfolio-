@@ -6,8 +6,8 @@ import { CommonModule } from '@angular/common';
 import { FormService } from '../../../services/form.service';
 import { RegistrationForm } from '../../../interfaces/registration.interface';
 import { Store } from '@ngrx/store';
-import { registerSelector } from '../../../store/registration/registration.selectors';
 import { RegistrationService } from '../../../services/registration.service';
+import { registerSelector } from '../../../store/registration/registration.selectors';
 
 @Component({
   selector: 'app-profile',
@@ -34,6 +34,7 @@ export class ProfileComponent implements OnInit {
 
     this.profileService.getProfile().subscribe((profile) => {
       this.form.patchValue(profile);
+      console.log(profile);
     });
   }
 

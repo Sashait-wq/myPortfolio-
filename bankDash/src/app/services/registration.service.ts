@@ -10,7 +10,6 @@ export class RegistrationService extends BaseService {
   public getUserLogin(user: IRegistrationData): Observable<any> {
     return this.post('register', user);
   }
-
   public getProfile(): Observable<any> {
     return this.get('profile');
   }

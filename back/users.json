@@ -1,39 +1,39 @@
 {
   "users": [
     {
-      "id": "1747933857777",
-      "username": "wdawdawd",
-      "password": "$2a$10$.m19rPwp8FP86sy99g9CB.saVyApO6Q4277RjS.4DPrJ.yIksktXi",
-      "email": "sevchenoolexandr19@gmail.com",
+      "id": "1748465715264",
+      "username": "Sashas",
+      "password": "$2a$10$3zR4.uTjgQpZQcw4dZUvqeAAKEV3.W0CQYLwW79nxKj/IqPpx1.Ni",
+      "email": "shevcheno212@gmail.com",
       "profile": {
-        "fullName": "фцвфцв",
-        "dateOfBirth": "2025-05-25",
-        "presentAddress": "awdawdawd",
-        "address": "awdawdaw",
-        "city": "dawdawdawd",
-        "postalCode": "wd23",
-        "country": "Україна",
+        "fullName": "Sasha",
+        "dateOfBirth": "2025-05-18",
+        "presentAddress": "Sdasdsa",
+        "address": "wadawdawd",
+        "city": "AWDw",
+        "postalCode": "W21244",
+        "country": "WAWDWA",
         "avatarUrl": null,
-        "createdAt": "2025-05-22T17:10:57.777Z",
-        "updatedAt": "2025-05-22T17:10:57.777Z"
+        "createdAt": "2025-05-28T20:55:15.264Z",
+        "updatedAt": "2025-05-28T20:55:15.264Z"
       }
     },
     {
-      "id": "1747935369239",
-      "username": "wdawdawdw",
-      "password": "$2a$10$/BCi0KRRVDfW.Ahyittyt.wtPXBvyWenC7G.lzQuWy9Vd4LNftdY2",
-      "email": "sevchenoolexawwwndr19@gmail.com",
+      "id": "1748466190607",
+      "username": "123123",
+      "password": "$2a$10$0Lc4tGK1b1Bm/Wh65cAUD.g8kNCr7qLo.WHDL6Q607KKhVvXzhtCi",
+      "email": "Shweva@gmail.com",
       "profile": {
-        "fullName": "фцвфцвawd",
-        "dateOfBirth": "2025-04-30",
-        "presentAddress": "awdawdawds",
-        "address": "awdawdaww",
-        "city": "dawdawdawda",
-        "postalCode": "wd23dw",
-        "country": "Україна",
+        "fullName": "ІФФЦВФЦВ",
+        "dateOfBirth": "2025-06-07",
+        "presentAddress": "2312312",
+        "address": "awdawd",
+        "city": "3qdawswdwq",
+        "postalCode": "wd23",
+        "country": "123123",
         "avatarUrl": null,
-        "createdAt": "2025-05-22T17:36:09.239Z",
-        "updatedAt": "2025-05-22T17:36:09.239Z"
+        "createdAt": "2025-05-28T21:03:10.607Z",
+        "updatedAt": "2025-05-28T21:03:10.607Z"
       }
     }
   ]

@@ -13,9 +13,13 @@ export class LoanEffects {
     this.action.pipe(
       ofType(loadLoan),
       switchMap(() =>
-        this.service.getLoans().pipe(
+        this.service.getLoan().pipe(
           map((loans) => {
-            return loadLoanSuccess(loans);
+            console.log('API response:', loans);
+            return loadLoanSuccess({
+              total: loans.total,
+              data: loans.data
+            });
           })
         )
       )

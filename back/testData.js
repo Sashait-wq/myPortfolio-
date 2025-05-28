@@ -7,7 +7,7 @@ const randomInt = (min, max) =>
 // Генерация случайной даты в диапазоне
 const randomDate = (start, end) => {
   return new Date(
-    start.getTime() + Math.random() * (end.getTime() - start.getTime()),
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
   );
 };
 
@@ -99,16 +99,20 @@ const generateUser = async (index) => {
 // Генерация случайной карты
 const generateCard = (userId, index) => {
   const cardNumber = Array.from({ length: 4 }, () =>
-    randomInt(1000, 9999),
+    randomInt(1000, 9999)
   ).join("");
 
   return {
     id: Date.now().toString() + index,
     userId: userId,
     cardType: cardTypes[randomInt(0, cardTypes.length - 1)],
-    nameOnCard: `${firstNames[randomInt(0, firstNames.length - 1)]} ${lastNames[randomInt(0, lastNames.length - 1)]}`,
+    nameOnCard: `${firstNames[randomInt(0, firstNames.length - 1)]} ${
+      lastNames[randomInt(0, lastNames.length - 1)]
+    }`,
     cardNumber: cardNumber,
-    expirationDate: `${randomInt(1, 12).toString().padStart(2, "0")}/${randomInt(24, 28)}`,
+    expirationDate: `${randomInt(1, 12)
+      .toString()
+      .padStart(2, "0")}/${randomInt(24, 28)}`,
     createdAt: new Date().toISOString(),
   };
 };
@@ -151,7 +155,7 @@ const generateLoan = (userId, index) => {
     paidAmount: paidAmount,
     startDate: startDate.toISOString(),
     nextPaymentDate: new Date(
-      startDate.getTime() + 30 * 24 * 60 * 60 * 1000,
+      startDate.getTime() + 30 * 24 * 60 * 60 * 1000
     ).toISOString(),
     createdAt: new Date().toISOString(),
   };

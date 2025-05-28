@@ -14,7 +14,13 @@ export class RegistrationEffects {
       ofType(register),
       switchMap(({ user }) =>
         this.service.getUserLogin(user).pipe(
-          map((response) => registerSuccess({ user: response })),
+          map((response) => {
+            localStorage.setItem('token', response.token);
+            return registerSuccess({
+              user: response.user,
+              token: response.token
+            });
+          }),
           catchError((error) => of(registerFailure({ error })))
         )
       )

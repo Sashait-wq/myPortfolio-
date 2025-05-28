@@ -1,9 +1,9 @@
-import { Loan, Total } from './loan.interface';
+import { Loan, Summary } from './loan.interface';
 import { createReducer, on } from '@ngrx/store';
 import { loadLoanSuccess } from './shopOne.action';
 
 export interface LoanState {
-  total: Total | null;
+  total: Summary | null;
   data: Loan[];
 }
 
@@ -20,5 +20,3 @@ export const loanReducer = createReducer(
     data
   }))
 );
-
-// Проблема була в тому, що ми просто збурігали стан без змін.

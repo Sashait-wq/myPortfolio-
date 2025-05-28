@@ -1,3 +1,111 @@
 {
-  "loans": []
-} 
+  "loans": [
+    {
+      "id": "1",
+      "loanNumber": "LN001",
+      "amount": 100000,
+      "duration": 8,
+      "interestRate": 12,
+      "status": "active",
+      "paidAmount": 59500,
+      "leftToRepay": 40500,
+      "installment": 2000,
+      "startDate": "2024-01-01T00:00:00Z",
+      "nextPaymentDate": "2024-02-01T00:00:00Z"
+    },
+    {
+      "id": "2",
+      "loanNumber": "LN002",
+      "amount": 500000,
+      "duration": 36,
+      "interestRate": 10,
+      "status": "active",
+      "paidAmount": 250000,
+      "leftToRepay": 250000,
+      "installment": 8000,
+      "startDate": "2024-01-01T00:00:00Z",
+      "nextPaymentDate": "2024-02-01T00:00:00Z"
+    },
+    {
+      "id": "3",
+      "loanNumber": "LN003",
+      "amount": 900000,
+      "duration": 12,
+      "interestRate": 12,
+      "status": "active",
+      "paidAmount": 855500,
+      "leftToRepay": 44500,
+      "installment": 5000,
+      "startDate": "2024-01-01T00:00:00Z",
+      "nextPaymentDate": "2024-02-01T00:00:00Z"
+    },
+    {
+      "id": "4",
+      "loanNumber": "LN004",
+      "amount": 50000,
+      "duration": 25,
+      "interestRate": 5,
+      "status": "active",
+      "paidAmount": 9500,
+      "leftToRepay": 40500,
+      "installment": 2000,
+      "startDate": "2024-01-01T00:00:00Z",
+      "nextPaymentDate": "2024-02-01T00:00:00Z"
+    },
+    {
+      "loanNumber": "LN005",
+      "amount": 50000,
+      "duration": 5,
+      "interestRate": 16,
+      "status": "active",
+      "paidAmount": 9500,
+      "leftToRepay": 40500,
+      "installment": 10000,
+      "startDate": "2024-01-01T00:00:00Z",
+      "nextPaymentDate": "2024-02-01T00:00:00Z"
+    },
+    {
+      "loanNumber": "LN006",
+      "amount": 80000,
+      "duration": 14,
+      "interestRate": 8,
+      "status": "active",
+      "paidAmount": 54500,
+      "leftToRepay": 25500,
+      "installment": 2000,
+      "startDate": "2024-01-01T00:00:00Z",
+      "nextPaymentDate": "2024-02-01T00:00:00Z"
+    },
+    {
+      "id": "7",
+      "loanNumber": "LN007",
+      "amount": 12000,
+      "duration": 9,
+      "interestRate": 13,
+      "status": "active",
+      "paidAmount": 6500,
+      "leftToRepay": 5500,
+      "installment": 500,
+      "startDate": "2024-01-01T00:00:00Z",
+      "nextPaymentDate": "2024-02-01T00:00:00Z"
+    },
+    {
+      "id": "8",
+      "loanNumber": "LN008",
+      "amount": 160000,
+      "duration": 3,
+      "interestRate": 12,
+      "status": "active",
+      "paidAmount": 59000,
+      "leftToRepay": 101000,
+      "installment": 900,
+      "startDate": "2024-01-01T00:00:00Z",
+      "nextPaymentDate": "2024-02-01T00:00:00Z"
+    }
+  ],
+  "summary": {
+    "totalAmount": 1250000,
+    "totalLeftToRepay": 750000,
+    "totalMonthlyPayment": 50000
+  }
+}

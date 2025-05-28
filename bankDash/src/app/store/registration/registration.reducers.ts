@@ -4,6 +4,7 @@ import { IRegistrationData } from './registration-data.interface';
 
 export interface RegistrationState {
   form: IRegistrationData;
+  token: string | null;
   error: any;
 }
 
@@ -20,18 +21,19 @@ const initialState: RegistrationState = {
     postalCode: '',
     country: ''
   },
+  token: null,
   error: null
 };
 
 export const registerReducer = createReducer(
   initialState,
 
-  on(registerSuccess, (state, { user }) => {
-    Object.entries(user).forEach(([key, value]) => {
-      (state.form as any)[key]?.setValue(value);
-    });
-    return { ...state, error: null };
-  }),
+  on(registerSuccess, (state, { user, token }) => ({
+    ...state,
+    form: { ...user },
+    error: null,
+    token
+  })),
 
   on(registerFailure, (state, { error }) => ({
     ...state,
