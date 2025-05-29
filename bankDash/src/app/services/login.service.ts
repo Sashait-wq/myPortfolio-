@@ -6,10 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService extends BaseService {
-  public qetLogin(): Observable<any> {
-    return this.post('login', {
-      username: 'user123',
-      password: 'password123'
-    });
+  public qetLogin(user: any): Observable<any> {
+    return this.post('login', user);
   }
 }

@@ -10,8 +10,13 @@ import { MyPrivilegesComponent } from './page/my-privileges/my-privileges.compon
 import { ServicesComponent } from './page/services/services.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { registrationGuard } from './guards/registration.guard';
+import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent
+  },
   {
     path: 'registration',
     component: RegistrationComponent
@@ -72,6 +77,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'dashboard'
+    redirectTo: 'login'
   }
 ];
