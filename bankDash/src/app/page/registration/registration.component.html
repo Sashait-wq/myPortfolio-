@@ -1,0 +1,145 @@
+<form class="registration-form" [formGroup]="form" (ngSubmit)="save()">
+  <div class="registration-form__container">
+    <div class="registration-form__left-panel">
+      <h2>Hello, Friend!</h2>
+      <p>Already have an account?</p>
+      <button mat-button routerLink="/login">Login</button>
+    </div>
+
+    <div class="registration-form__right-panel">
+      <h2 class="registration-form__title">Registration</h2>
+
+      <div class="registration-form__grid">
+        <!-- Your Name -->
+        <div class="registration-form__field">
+          <label>Your Name</label>
+          <input type="text" placeholder="Charlene Reed" formControlName="fullName" />
+          @if (isInvalid('fullName')) {
+            @if (getError('fullName', 'required')) {
+              <small style="color: red">Це поле обов'язкове</small>
+            }
+          }
+        </div>
+
+        <!-- User Name -->
+        <div class="registration-form__field">
+          <label>User Name</label>
+          <input type="text" placeholder="Charlene Reed" formControlName="username" />
+          @if (isInvalid('username')) {
+            @if (getError('username', 'required')) {
+              <small style="color: red">Це поле обов'язкове</small>
+            }
+          }
+        </div>
+
+        <!-- Email -->
+        <div class="registration-form__field">
+          <label>Email</label>
+          <input type="email" placeholder="charlenereed@gmail.com" formControlName="email" />
+          @if (isInvalid('email')) {
+            @if (getError('email', 'required')) {
+              <small style="color: red">Це поле обов'язкове</small>
+            }
+            @if (getError('email', 'email')) {
+              <small style="color: red">Некоректна електронна пошта</small>
+            }
+          }
+        </div>
+
+        <!-- Password -->
+        <div class="registration-form__field">
+          <label>Password</label>
+          <input type="password" placeholder="**********" formControlName="password" />
+          @if (isInvalid('password')) {
+            @if (getError('password', 'required')) {
+              <small style="color: red">Це поле обов'язкове</small>
+            }
+            @if (getError('password', 'minlength')) {
+              <small style="color: red">Пароль повинен містити щонайменше 6 символів</small>
+            }
+          }
+        </div>
+
+        <!-- Date of Birth -->
+        <div class="registration-form__field">
+          <label>Date of Birth</label>
+          <input type="date" formControlName="dateOfBirth" />
+          @if (isInvalid('dateOfBirth')) {
+            @if (getError('dateOfBirth', 'required')) {
+              <small style="color: red">Це поле обов'язкове</small>
+            }
+          }
+        </div>
+
+        <!-- Present Address -->
+        <div class="registration-form__field">
+          <label>Present Address</label>
+          <input
+            type="text"
+            placeholder="San Jose, California, USA"
+            formControlName="presentAddress"
+          />
+          @if (isInvalid('presentAddress')) {
+            @if (getError('presentAddress', 'required')) {
+              <small style="color: red">Це поле обов'язкове</small>
+            }
+          }
+        </div>
+
+        <!-- Permanent Address -->
+        <div class="registration-form__field">
+          <label>Permanent Address</label>
+          <input type="text" placeholder="San Jose, California, USA" formControlName="address" />
+          @if (isInvalid('address')) {
+            @if (getError('address', 'required')) {
+              <small style="color: red">Це поле обов'язкове</small>
+            }
+          }
+        </div>
+
+        <!-- City -->
+        <div class="registration-form__field">
+          <label>City</label>
+          <input type="text" placeholder="San Jose" formControlName="city" />
+          @if (isInvalid('city')) {
+            @if (getError('city', 'required')) {
+              <small style="color: red">Це поле обов'язкове</small>
+            }
+          }
+        </div>
+
+        <!-- Postal Code -->
+        <div class="registration-form__field">
+          <label>Postal Code</label>
+          <input type="text" placeholder="45962" formControlName="postalCode" />
+          @if (isInvalid('postalCode')) {
+            @if (getError('postalCode', 'required')) {
+              <small style="color: red">Це поле обов'язкове</small>
+            }
+            @if (getError('postalCode', 'pattern')) {
+              <small style="color: red">
+                Формат поштового індексу невірний. Використовуйте 3–10 літер, цифр, пробілів або
+                дефісів.
+              </small>
+            }
+          }
+        </div>
+
+        <!-- Country -->
+        <div class="registration-form__field">
+          <label>Country</label>
+          <input type="text" placeholder="USA" formControlName="country" />
+          @if (isInvalid('country')) {
+            @if (getError('country', 'required')) {
+              <small style="color: red">Це поле обов'язкове</small>
+            }
+          }
+        </div>
+      </div>
+
+      <div class="registration-form__actions">
+        <button type="submit" [disabled]="form.invalid" mat-flat-button>Registration</button>
+      </div>
+    </div>
+  </div>
+</form>

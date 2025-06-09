@@ -6,6 +6,7 @@
   &__cards {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 30px;
     width: 100%;
   }
@@ -30,12 +31,14 @@
       font-size: 16px;
       color: #718ebf;
       font-weight: 400;
+      white-space: nowrap;
     }
 
     span {
       font-size: 20px;
       font-weight: 500;
       color: #232323;
+      white-space: nowrap;
     }
   }
 
@@ -82,13 +85,27 @@
   }
 }
 
-.mat-elevation-z8 {
-  background: #ffffff;
-  padding: 0 22px 30px 22px;
-  border-radius: 25px;
+.no-data-row td {
+  padding: 40px 20px;
+  text-align: center;
+  border-bottom: none;
+}
 
-  th {
-    color: #718ebf;
-    font-size: 1rem;
-  }
+.no-data-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+}
+
+.no-data-content h3 {
+  color: #343c6a;
+}
+
+.no-data-content p {
+  max-width: 420px;
+  font-size: 14px;
+  text-align: center;
+  color: #718ebf;
 }

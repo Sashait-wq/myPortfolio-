@@ -8,21 +8,23 @@ import {
   Validators
 } from '@angular/forms';
 import { MatError } from '@angular/material/input';
-import { MatButton } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { LoginService } from '../../services/login.service';
+import { AuthService } from '../../guards/auth.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [NgIf, ReactiveFormsModule, MatError, MatButton],
+  imports: [NgIf, ReactiveFormsModule, MatError, MatButtonModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   loginService = inject(LoginService);
-
+  authService = inject(AuthService);
   form = new FormGroup({
-    username: new FormControl<string | null>('Sasha', [Validators.required]),
-    password: new FormControl<string | null>('password123', [
+    username: new FormControl<string | null>('Sasha2', [Validators.required]),
+    password: new FormControl<string | null>('12345678', [
       Validators.required,
       Validators.minLength(6)
     ])
@@ -30,7 +32,7 @@ export class LoginComponent {
 
   submit(): void {
     this.loginService.qetLogin(this.form.value).subscribe((user: any) => {
-      console.log(user);
+      this.authService.login(user.token);
     });
   }
 

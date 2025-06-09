@@ -35,6 +35,24 @@
         "createdAt": "2025-05-29T17:36:39.394Z",
         "updatedAt": "2025-05-29T17:36:39.394Z"
       }
+    },
+    {
+      "id": "1748540818058",
+      "username": "Sasha2",
+      "password": "12345678",
+      "email": "awdawwd@gmail.com",
+      "profile": {
+        "fullName": "Sasha2",
+        "dateOfBirth": "2025-05-11",
+        "presentAddress": "awdawd",
+        "address": "awdawdaw",
+        "city": "awdawd",
+        "postalCode": "dawdawdawd",
+        "country": "awdawd",
+        "avatarUrl": null,
+        "createdAt": "2025-05-29T17:46:58.058Z",
+        "updatedAt": "2025-05-29T17:46:58.058Z"
+      }
     }
   ]
 }

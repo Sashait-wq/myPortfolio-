@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { LoanService } from '../../services/loan.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { loadLoan, loadLoanSuccess } from './shopOne.action';
+import { loadLoan, loadLoanInfo, loadLoanInfoSuccess, loadLoanSuccess } from './shopOne.action';
 import { map, switchMap } from 'rxjs';
 
 @Injectable()
@@ -20,6 +20,19 @@ export class LoanEffects {
               total: loans.total,
               data: loans.data
             });
+          })
+        )
+      )
+    )
+  );
+
+  loadLoanInfo$ = createEffect(() =>
+    this.action.pipe(
+      ofType(loadLoanInfo),
+      switchMap(() =>
+        this.service.loanBaseInfo().pipe(
+          map((loanInfo) => {
+            return loadLoanInfoSuccess({ loanInfo });
           })
         )
       )

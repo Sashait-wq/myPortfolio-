@@ -1,16 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
-import { NgIf } from '@angular/common';
 import { RegistrationForm } from '../../interfaces/registration.interface';
 import { Store } from '@ngrx/store';
 import { IRegistrationData } from '../../store/registration/registration-data.interface';
 import { FormService } from '../../services/form.service';
 import { register } from '../../store/registration/registration.action';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
-  imports: [FormsModule, MatButton, NgIf, ReactiveFormsModule],
+  imports: [FormsModule, MatButton, ReactiveFormsModule, RouterLink],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss'
 })

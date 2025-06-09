@@ -28,11 +28,10 @@ const initialState: RegistrationState = {
 export const registerReducer = createReducer(
   initialState,
 
-  on(registerSuccess, (state, { user, token }) => ({
+  on(registerSuccess, (state, { user }) => ({
     ...state,
     form: { ...user },
-    error: null,
-    token
+    error: null
   })),
 
   on(registerFailure, (state, { error }) => ({

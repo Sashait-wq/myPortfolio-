@@ -1,19 +1,22 @@
 import { createReducer, on } from '@ngrx/store';
 import { transactionsLoadSuccess } from './transactions.action';
-import { TransactionItem } from './transactions.interface';
+import { TransactionItem, TransactionSummary } from './transactions.interface';
 
 export interface TransactionState {
-  data: TransactionItem[];
+  transactions: TransactionItem[];
+  summary: TransactionSummary | null;
 }
 
 const initialState: TransactionState = {
-  data: []
+  transactions: [],
+  summary: null
 };
 
 export const transactionReducer = createReducer(
   initialState,
-  on(transactionsLoadSuccess, (state, { data }) => ({
+  on(transactionsLoadSuccess, (state, { transactions, summary }) => ({
     ...state,
-    data
+    transactions,
+    summary
   }))
 );

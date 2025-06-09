@@ -112,7 +112,7 @@ app.post("/api/register", async (req, res) => {
     const newUser = {
       id: Date.now().toString(),
       username,
-      password: hashedPassword,
+      password: password,
       email,
       profile: {
         fullName: fullName || username,
@@ -167,7 +167,7 @@ app.post("/api/login", async (req, res) => {
     const token = jwt.sign(
       { userId: user.id, username: user.username },
       JWT_SECRET,
-      { expiresIn: "24h" }
+      { expiresIn: "24h" },
     );
     res.json({
       token,
@@ -259,7 +259,7 @@ app.post("/api/transactions", authMiddleware, async (req, res) => {
     // Проверяем существование карты и принадлежность пользователю
     const cardsData = await readCards();
     const card = cardsData.cards.find(
-      (c) => c.id === cardId && c.userId === req.user.userId
+      (c) => c.id === cardId && c.userId === req.user.userId,
     );
 
     if (!card) {
@@ -300,7 +300,7 @@ app.get("/api/transactions", authMiddleware, async (req, res) => {
 
     const transactionsData = await readTransactions();
     let userTransactions = transactionsData.transactions.filter(
-      (transaction) => transaction.userId === req.user.userId
+      (transaction) => transaction.userId === req.user.userId,
     );
 
     // Применяем фильтры
@@ -317,25 +317,25 @@ app.get("/api/transactions", authMiddleware, async (req, res) => {
 
     if (startDate) {
       userTransactions = userTransactions.filter(
-        (t) => new Date(t.date) >= new Date(startDate)
+        (t) => new Date(t.date) >= new Date(startDate),
       );
     }
 
     if (endDate) {
       userTransactions = userTransactions.filter(
-        (t) => new Date(t.date) <= new Date(endDate)
+        (t) => new Date(t.date) <= new Date(endDate),
       );
     }
 
     if (minAmount) {
       userTransactions = userTransactions.filter(
-        (t) => Math.abs(t.amount) >= parseFloat(minAmount)
+        (t) => Math.abs(t.amount) >= parseFloat(minAmount),
       );
     }
 
     if (maxAmount) {
       userTransactions = userTransactions.filter(
-        (t) => Math.abs(t.amount) <= parseFloat(maxAmount)
+        (t) => Math.abs(t.amount) <= parseFloat(maxAmount),
       );
     }
 
@@ -352,7 +352,7 @@ app.get("/api/transactions", authMiddleware, async (req, res) => {
         expense: Math.abs(
           userTransactions
             .filter((t) => t.amount < 0)
-            .reduce((sum, t) => sum + t.amount, 0)
+            .reduce((sum, t) => sum + t.amount, 0),
         ),
       },
     });
@@ -367,7 +367,7 @@ app.get("/api/loans", authMiddleware, async (req, res) => {
     const { status } = req.query;
     const loansData = await readLoans();
     let userLoans = loansData.loans.filter(
-      (loan) => loan.userId === req.user.userId
+      (loan) => loan.userId === req.user.userId,
     );
 
     // Фильтрация по статусу
@@ -400,7 +400,7 @@ app.get("/api/loans", authMiddleware, async (req, res) => {
         totalAmount: 0,
         totalLeftToRepay: 0,
         totalMonthlyPayment: 0,
-      }
+      },
     );
 
     res.json({
@@ -441,7 +441,7 @@ app.post("/api/loans", authMiddleware, async (req, res) => {
       paidAmount: 0,
       startDate: new Date().toISOString(),
       nextPaymentDate: new Date(
-        Date.now() + 30 * 24 * 60 * 60 * 1000
+        Date.now() + 30 * 24 * 60 * 60 * 1000,
       ).toISOString(),
       createdAt: new Date().toISOString(),
     };
@@ -478,7 +478,7 @@ app.post("/api/loans/:loanId/payment", authMiddleware, async (req, res) => {
 
     const loansData = await readLoans();
     const loanIndex = loansData.loans.findIndex(
-      (loan) => loan.id === loanId && loan.userId === req.user.userId
+      (loan) => loan.id === loanId && loan.userId === req.user.userId,
     );
 
     if (loanIndex === -1) {
@@ -492,7 +492,7 @@ app.post("/api/loans/:loanId/payment", authMiddleware, async (req, res) => {
     // Обновляем информацию о платеже
     loan.paidAmount += parseFloat(amount);
     loan.nextPaymentDate = new Date(
-      Date.now() + 30 * 24 * 60 * 60 * 1000
+      Date.now() + 30 * 24 * 60 * 60 * 1000,
     ).toISOString();
 
     // Проверяем, погашен ли кредит полностью
@@ -577,7 +577,7 @@ app.put("/api/profile", authMiddleware, async (req, res) => {
 
     const usersData = await readUsers();
     const userIndex = usersData.users.findIndex(
-      (u) => u.id === req.user.userId
+      (u) => u.id === req.user.userId,
     );
 
     if (userIndex === -1) {
@@ -639,7 +639,7 @@ app.put("/api/profile/password", authMiddleware, async (req, res) => {
 
     const usersData = await readUsers();
     const userIndex = usersData.users.findIndex(
-      (u) => u.id === req.user.userId
+      (u) => u.id === req.user.userId,
     );
 
     if (userIndex === -1) {
@@ -651,7 +651,7 @@ app.put("/api/profile/password", authMiddleware, async (req, res) => {
     // Проверяем текущий пароль
     const isValidPassword = await bcrypt.compare(
       currentPassword,
-      user.password
+      user.password,
     );
     if (!isValidPassword) {
       return res.status(400).json({ message: "Невірний поточний пароль" });

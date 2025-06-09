@@ -1,16 +1,28 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
-import { Observable } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { Loan, Summary } from '../store/loan/loan.interface';
-import { HttpClient } from '@angular/common/http';
 
+export interface LoanInformation {
+  personal: number;
+  corporate: number;
+  business: number;
+  custom: string;
+}
 @Injectable({
   providedIn: 'root'
 })
 export class LoanService extends BaseService {
-  private httpLoan = inject(HttpClient);
-
   public getLoan(): Observable<{ total: Summary; data: Loan[] }> {
-    return this.httpLoan.get<{ total: Summary; data: Loan[] }>('loans');
+    return this.get('loans', { userId: '1748540818058' });
+  }
+
+  public loanBaseInfo(): Observable<LoanInformation> {
+    return of({
+      personal: 100,
+      corporate: 500,
+      business: 300,
+      custom: 'Choose Money'
+    }).pipe(delay(1500));
   }
 }

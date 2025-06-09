@@ -24,6 +24,7 @@
     "@ngrx/store": "^19.1.0",
     "@ngrx/store-devtools": "^19.1.0",
     "concurrently": "^9.1.2",
+    "ngx-skeleton-loader": "^11.1.0",
     "prettier": "^3.5.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

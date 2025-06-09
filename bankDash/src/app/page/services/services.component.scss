@@ -7,6 +7,7 @@
 .service-cards {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   width: 100%;
   gap: 30px;
 }
@@ -29,12 +30,14 @@
       font-size: 20px;
       color: #232323;
       font-weight: 500;
+      white-space: nowrap;
     }
 
     a {
       font-size: 16px;
       color: #718ebf;
       font-weight: 400;
+      white-space: nowrap;
     }
   }
 
@@ -83,7 +86,6 @@
 
   &__info {
     display: flex;
-    align-items: center;
     gap: 20px;
 
     span {
@@ -104,6 +106,7 @@
     height: 60px;
     width: 60px;
     border-radius: 20%;
+    flex-shrink: 0;
   }
 
   &__text,
@@ -127,13 +130,14 @@
 
   &__action {
     display: flex;
-    justify-content: flex-end;
   }
 
   &__info,
   &__detail,
   &__action {
     flex: 1 1 200px;
+    justify-content: center;
+    align-items: center;
   }
 }
 

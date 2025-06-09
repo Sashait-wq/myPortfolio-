@@ -1,7 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-  --color: #000;
+  --color-text: #232323;
+  --color-text2: #718ebf;
+  --color-text3: #343c6a;
+  --color-text4: #8ba3cb;
+  --color-text5: #7a9abf;
+  --color-bg: #f5f7fa;
+  --color-bg2: #fff5d9;
+  --color-bg3: #dcfaf8;
+  --color-bg4: #e7edff;
+  --color-bg5: #ffe0eb;
+  --color-bg6: #e6eff5;
 }
 
 html,
@@ -54,4 +64,27 @@ a {
 
 .mat-mdc-cell {
   border-bottom: 1px solid #f2f4f7 !important;
+}
+
+// Колір для кнопки
+
+.mdc-button {
+  color: #718ebf !important;
+
+  &:hover {
+    color: #8ba3cb !important;
+  }
+}
+
+// Для таблиці
+.mat-elevation-z8 {
+  background: #ffffff !important;
+  padding: 0 22px !important;
+  border-radius: 25px !important;
+
+  th {
+    color: #718ebf;
+    font-size: 1rem;
+    text-align: center;
+  }
 }

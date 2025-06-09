@@ -1,8 +1,15 @@
 export interface TransactionItem {
-  Description: string;
-  TransactionID: string;
-  Type: number;
-  Card: number;
-  Date: number;
-  Amount: number;
+  id: string;
+  transactionId: string;
+  description: string;
+  type: string;
+  cardNumber: string;
+  amount: number;
+  date: string;
+}
+
+export interface TransactionSummary {
+  total: number;
+  income: number;
+  expense: number;
 }

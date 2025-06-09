@@ -16,8 +16,8 @@ export class BaseService {
       Authorization: `Bearer ${token}`
     });
   }
-  protected get(url: string): Observable<any> {
-    return this.http.get(this.baseUrl + url, { headers: this.header() });
+  protected get(url: string, params?: any): Observable<any> {
+    return this.http.get(this.baseUrl + url, { headers: this.header(), params });
   }
 
   protected post(url: string, data: any, params?: any): Observable<any> {

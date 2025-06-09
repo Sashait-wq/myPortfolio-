@@ -1,16 +1,16 @@
 import { createAction, props } from '@ngrx/store';
-import { TransactionItem } from './transactions.interface';
+import { TransactionItem, TransactionSummary } from './transactions.interface';
 
 export enum TransactionsActionTypes {
-  LoadTransactions = 'Load All Transactions',
-  LoadTransactionsSuccess = 'Load All Transactions Success',
-  LoadTransactionsError = 'Load All Transactions Error'
+  LoadTransactions = '[Load] All Transactions',
+  LoadTransactionsSuccess = '[Load] All Transactions Success',
+  LoadTransactionsError = '[Load] All Transactions Error'
 }
 
 export const transactionsLoad = createAction(TransactionsActionTypes.LoadTransactions);
 export const transactionsLoadSuccess = createAction(
   TransactionsActionTypes.LoadTransactionsSuccess,
-  props<{ data: TransactionItem[] }>()
+  props<{ transactions: TransactionItem[]; summary: TransactionSummary }>()
 );
 export const transactionLoadError = createAction(
   TransactionsActionTypes.LoadTransactionsError,

@@ -14,8 +14,11 @@ export class transactionsEffect {
       ofType(transactionsLoad),
       switchMap(() =>
         this.service.getTransaction().pipe(
-          map((transaction) => {
-            return transactionsLoadSuccess({ data: transaction });
+          map((response) => {
+            return transactionsLoadSuccess({
+              transactions: response.transactions,
+              summary: response.summary
+            });
           })
         )
       )

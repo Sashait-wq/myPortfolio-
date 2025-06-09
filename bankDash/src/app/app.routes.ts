@@ -8,9 +8,10 @@ import { InvestmentsComponent } from './page/investments/investments.component';
 import { SettingComponent } from './page/setting/setting.component';
 import { MyPrivilegesComponent } from './page/my-privileges/my-privileges.component';
 import { ServicesComponent } from './page/services/services.component';
-import { RegistrationComponent } from './components/registration/registration.component';
-import { registrationGuard } from './guards/registration.guard';
-import { LoginComponent } from './components/login/login.component';
+import { RegistrationComponent } from './page/registration/registration.component';
+import { authGuard } from './guards/authGuard';
+import { LoginComponent } from './page/login/login.component';
+import { AppWrapperComponent } from './page/app-wrapper/app-wrapper.component';
 
 export const routes: Routes = [
   {
@@ -22,58 +23,56 @@ export const routes: Routes = [
     component: RegistrationComponent
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
-    data: { title: 'Overview' },
-    canActivate: [registrationGuard]
-  },
-  {
-    path: 'transactions',
-    component: TransactionsComponent,
-    data: { title: 'Transactions' },
-    canActivate: [registrationGuard]
-  },
-  {
-    path: 'credit-cards',
-    component: CreditCardsComponent,
-    data: { title: 'Credit Cards' },
-    canActivate: [registrationGuard]
-  },
-  {
-    path: 'loans',
-    component: LoansComponent,
-    data: { title: 'Loans' },
-    canActivate: [registrationGuard]
-  },
-  {
-    path: 'investments',
-    component: InvestmentsComponent,
-    data: { title: 'Investments' },
-    canActivate: [registrationGuard]
-  },
-  {
-    path: 'settings',
-    component: SettingComponent,
-    data: { title: 'Setting' },
-    canActivate: [registrationGuard]
-  },
-  {
-    path: 'privileges',
-    component: MyPrivilegesComponent,
-    data: { title: 'Privileges' },
-    canActivate: [registrationGuard]
-  },
-  {
-    path: 'services',
-    component: ServicesComponent,
-    data: { title: 'Services' },
-    canActivate: [registrationGuard]
-  },
-  {
-    path: 'accounts',
-    component: AccountsComponent,
-    data: { title: 'Accounts' },
-    canActivate: [registrationGuard]
+    path: 'app',
+    component: AppWrapperComponent,
+    canActivateChild: [authGuard],
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        data: { title: 'Overview' }
+      },
+      {
+        path: 'transactions',
+        component: TransactionsComponent,
+        data: { title: 'Transactions' }
+      },
+      {
+        path: 'credit-cards',
+        component: CreditCardsComponent,
+        data: { title: 'Credit Cards' }
+      },
+      {
+        path: 'loans',
+        component: LoansComponent,
+        data: { title: 'Loans' }
+      },
+      {
+        path: 'investments',
+        component: InvestmentsComponent,
+        data: { title: 'Investments' }
+      },
+      {
+        path: 'settings',
+        component: SettingComponent,
+        data: { title: 'Setting' }
+      },
+      {
+        path: 'privileges',
+        component: MyPrivilegesComponent,
+        data: { title: 'Privileges' }
+      },
+      {
+        path: 'services',
+        component: ServicesComponent,
+        data: { title: 'Services' }
+      },
+      {
+        path: 'accounts',
+        component: AccountsComponent,
+        data: { title: 'Accounts' }
+      }
+    ]
   },
   {
     path: '**',

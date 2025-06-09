@@ -14,7 +14,7 @@ export const register = createAction(
 
 export const registerSuccess = createAction(
   RegistrationUsers.RegisterSuccess,
-  props<{ user: IRegistrationData; token: string }>()
+  props<{ user: IRegistrationData }>()
 );
 
 export const registerFailure = createAction(

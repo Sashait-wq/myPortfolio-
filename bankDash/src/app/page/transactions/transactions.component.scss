@@ -1,0 +1,24 @@
+.no-data-row td {
+  padding: 40px 20px;
+  text-align: center;
+  border-bottom: none;
+}
+
+.no-data-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+}
+
+.no-data-content h3 {
+  color: #343c6a;
+}
+
+.no-data-content p {
+  max-width: 420px;
+  font-size: 14px;
+  text-align: center;
+  color: #718ebf;
+}
