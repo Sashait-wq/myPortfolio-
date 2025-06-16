@@ -1,6 +1,42 @@
 {
   "users": [
     {
+      "id": "1",
+      "username": "john_doe",
+      "password": "123456",
+      "email": "john@example.com",
+      "profile": {
+        "fullName": "John Doe",
+        "dateOfBirth": "1990-01-01",
+        "presentAddress": "123 Main St",
+        "address": "123 Main St",
+        "city": "New York",
+        "postalCode": "10001",
+        "country": "USA",
+        "avatarUrl": null,
+        "createdAt": "2024-01-01T10:00:00.000Z",
+        "updatedAt": "2024-01-01T10:00:00.000Z"
+      }
+    },
+    {
+      "id": "2",
+      "username": "jane_smith",
+      "password": "qwerty",
+      "email": "jane@example.com",
+      "profile": {
+        "fullName": "Jane Smith",
+        "dateOfBirth": "1992-05-10",
+        "presentAddress": "456 Elm St",
+        "address": "456 Elm St",
+        "city": "Los Angeles",
+        "postalCode": "90001",
+        "country": "USA",
+        "avatarUrl": null,
+        "createdAt": "2024-01-02T11:00:00.000Z",
+        "updatedAt": "2024-01-02T11:00:00.000Z"
+      }
+    },
+    {
       "id": "1748468456543",
       "username": "Sasha",
       "password": "$2a$10$2YJ8u6TdUvZNqAEUZXlyxuQHNmW0J7yKqYTanZcMtnc4u0fNcy2KO",
@@ -52,6 +88,42 @@
         "avatarUrl": null,
         "createdAt": "2025-05-29T17:46:58.058Z",
         "updatedAt": "2025-05-29T17:46:58.058Z"
+      }
+    },
+    {
+      "id": "1749482910871",
+      "username": "1qwerty2@gmail.com",
+      "password": "1qwerty2",
+      "email": "TomchukD@csiworks.net",
+      "profile": {
+        "fullName": "Dima Tomchuk",
+        "dateOfBirth": "2025-02-06",
+        "presentAddress": "torgova",
+        "address": "123123",
+        "city": "Dnipro",
+        "postalCode": "49000",
+        "country": "Україна",
+        "avatarUrl": null,
+        "createdAt": "2025-06-09T15:28:30.871Z",
+        "updatedAt": "2025-06-09T15:28:30.871Z"
+      }
+    },
+    {
+      "id": "1749482940487",
+      "username": "1qwe2rty2@gmail.com",
+      "password": "1qwerty2",
+      "email": "Tomchu2kD@csiworks.net",
+      "profile": {
+        "fullName": "Dima Tomchuk2",
+        "dateOfBirth": "2025-02-06",
+        "presentAddress": "torgova",
+        "address": "123123",
+        "city": "Dnipro",
+        "postalCode": "49000",
+        "country": "123123",
+        "avatarUrl": null,
+        "createdAt": "2025-06-09T15:29:00.487Z",
+        "updatedAt": "2025-06-09T15:29:00.487Z"
       }
     }
   ]

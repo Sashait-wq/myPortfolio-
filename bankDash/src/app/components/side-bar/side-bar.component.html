@@ -49,16 +49,13 @@
       >
     </li>
     <li>
-      <a routerLinkActive="activated" routerLink="privileges">
-        <img src="assets/sideBarImg/groups.svg" alt="Іконка панелі керування" />
-        <span>My Privileges</span></a
-      >
-    </li>
-    <li>
       <a routerLinkActive="activated" routerLink="settings">
         <img src="assets/sideBarImg/settings-solid.svg" alt="Іконка панелі керування" />
         <span>Setting</span></a
       >
     </li>
   </ul>
+  <div class="side-bar__log-out">
+    <button mat-flat-button (click)="exit()">Log out</button>
+  </div>
 </div>

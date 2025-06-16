@@ -1,11 +1,14 @@
 import { createAction, props } from '@ngrx/store';
-import { Loan, Summary } from './loan.interface';
-import { LoanInformation } from '../../services/loan.service';
+import { Loan, Summary } from '../../interfaces/loan.interface';
+import { LoanInformation } from '../../request-service/loan.service';
 
 export enum LoanActionTypes {
   LoadLoan = '[Load] Loan',
   LoadLoanSuccess = '[Load] Loan Success',
-  LoadLoanError = '[Load] Loan Error'
+  LoadLoanError = '[Load] Loan Error',
+  loanInformation = '[Loan] Loan information',
+  loanInformationSuccess = '[Loan] Loan information Success',
+  loanInformationError = '[Loan] Loan information Error'
 }
 
 export const loadLoan = createAction(LoanActionTypes.LoadLoan);
@@ -20,12 +23,12 @@ export const loadLoanError = createAction(
   props<{ error: string }>()
 );
 
-export const loadLoanInfo = createAction('[Load] Loan information');
+export const loadLoanInfo = createAction(LoanActionTypes.loanInformation);
 export const loadLoanInfoSuccess = createAction(
-  '[Load] Loan information success',
+  LoanActionTypes.loanInformationSuccess,
   props<{ loanInfo: LoanInformation }>()
 );
 export const loadLoanInfoError = createAction(
-  '[Load] Loan information error',
+  LoanActionTypes.loanInformationError,
   props<{ error: any }>()
 );

@@ -1,1 +1,60 @@
-<p>card-item works!</p>
+<div class="card">
+  <div class="card__content">
+    <div class="card__header">
+      <div class="card__header-balance">
+        <p class="card__label">Balance</p>
+
+        @if (loader | async) {
+          <ngx-skeleton-loader
+            count="1"
+            appearance="line"
+            [theme]="{ margin: 0 }"
+          ></ngx-skeleton-loader>
+        } @else {
+          <span class="card__value">${{ card.balance }}</span>
+        }
+      </div>
+      <img src="assets/imgCard/Chip-Card.svg" alt="Chip" />
+    </div>
+
+    <div class="card__body">
+      <div class="card__body-holder">
+        <p class="card__label">CARD HOLDER</p>
+        @if (loader | async) {
+          <ngx-skeleton-loader
+            count="1"
+            appearance="line"
+            [theme]="{ margin: 0 }"
+          ></ngx-skeleton-loader>
+        } @else {
+          <p class="card__value">{{ card.nameOnCard }}</p>
+        }
+      </div>
+      <div class="card__body-expiry">
+        <p class="card__label">VALID THRU</p>
+        @if (loader | async) {
+          <ngx-skeleton-loader
+            count="1"
+            appearance="line"
+            [theme]="{ margin: 0 }"
+          ></ngx-skeleton-loader>
+        } @else {
+          <span class="card__value">{{ card.expirationDate }}</span>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="card__footer">
+    @if (loader | async) {
+      <ngx-skeleton-loader
+        count="1"
+        appearance="line"
+        [theme]="{ margin: 0 }"
+      ></ngx-skeleton-loader>
+    } @else {
+      <span class="card__footer-number">{{ card.cardNumber | cardMask: 4 : 'both' }}</span>
+    }
+    <img src="assets/imgCard/Group.svg" alt="Logo" />
+  </div>
+</div>

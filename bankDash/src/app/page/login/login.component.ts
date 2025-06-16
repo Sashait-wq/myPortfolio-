@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 import {
   AbstractControl,
@@ -9,9 +9,9 @@ import {
 } from '@angular/forms';
 import { MatError } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '../../request-service/login.service';
 import { AuthService } from '../../guards/auth.service';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,12 +19,13 @@ import { RouterLink } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginService = inject(LoginService);
   authService = inject(AuthService);
+  route = inject(ActivatedRoute);
   form = new FormGroup({
-    username: new FormControl<string | null>('Sasha2', [Validators.required]),
-    password: new FormControl<string | null>('12345678', [
+    username: new FormControl<string | null>('Sasha1111', [Validators.required]),
+    password: new FormControl<string | null>('awdawdawd2122121', [
       Validators.required,
       Validators.minLength(6)
     ])
@@ -34,6 +35,13 @@ export class LoginComponent {
     this.loginService.qetLogin(this.form.value).subscribe((user: any) => {
       this.authService.login(user.token);
     });
+  }
+
+  ngOnInit(): void {
+    const username = this.route.snapshot.queryParamMap.get('username');
+    if (username) {
+      this.form.patchValue({ username: username });
+    }
   }
 
   public isInvalid(controlName: string): boolean {

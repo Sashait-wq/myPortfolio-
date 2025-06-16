@@ -1,1 +1,37 @@
-<p>credit-cards works!</p>
+<div class="header-card">
+  <h2 class="title">My Cards</h2>
+
+  <div class="header-card__item">
+    @for (item of creditCards; track item) {
+      <app-card-item [card]="item"></app-card-item>
+    }
+  </div>
+
+  <div class="card">
+    <div class="card__statistic">
+      <h2 class="title">Card Expense Statistics</h2>
+      <div class="card__ATM">
+        <apx-chart
+          [series]="series"
+          [chart]="chart"
+          [labels]="labels"
+          [colors]="colors"
+          [legend]="legend"
+        ></apx-chart>
+
+        <div class="legend">
+          <div class="legend-item" *ngFor="let label of labels; let i = index">
+            <span class="dot" [style.background]="colors[i]"></span>
+            <span>{{ label }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-list">
+      <h2 class="title">Card List</h2>
+
+      <div class="card-list__items"></div>
+    </div>
+  </div>
+</div>

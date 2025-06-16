@@ -23,8 +23,8 @@ export class BaseService {
   protected post(url: string, data: any, params?: any): Observable<any> {
     return this.http.post(this.baseUrl + url, data, { headers: this.header(), params });
   }
-}
 
-// Конект з беком
-// Доробити логін
-// І робиби гуарди
+  protected put(url: string, data: any, params?: any): Observable<any> {
+    return this.http.put(this.baseUrl + url, data, { headers: this.header(), params });
+  }
+}

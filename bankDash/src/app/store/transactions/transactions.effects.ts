@@ -1,15 +1,19 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { transactionsLoad, transactionsLoadSuccess } from './transactions.action';
-import { map, switchMap } from 'rxjs';
-import { TransactionService } from '../../services/transaction.service';
+import {
+  transactionLoadError,
+  transactionsLoad,
+  transactionsLoadSuccess
+} from './transactions.action';
+import { catchError, map, of, switchMap } from 'rxjs';
+import { TransactionService } from '../../request-service/transaction.service';
 
 @Injectable()
 export class transactionsEffect {
   private service = inject(TransactionService);
   private action = inject(Actions);
 
-  transactionsLoadEffect$ = createEffect(() =>
+  loadTransactionsEffect$ = createEffect(() =>
     this.action.pipe(
       ofType(transactionsLoad),
       switchMap(() =>
@@ -19,6 +23,9 @@ export class transactionsEffect {
               transactions: response.transactions,
               summary: response.summary
             });
+          }),
+          catchError((error) => {
+            return of(transactionLoadError({ error }));
           })
         )
       )

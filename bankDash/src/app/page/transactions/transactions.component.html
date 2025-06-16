@@ -2,7 +2,7 @@
   <div></div>
 
   <div>
-    @if (loader) {
+    @if (loader$ | async) {
       <ngx-skeleton-loader
         count="10"
         appearance="line"

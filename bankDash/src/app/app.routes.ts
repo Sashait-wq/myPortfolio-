@@ -6,14 +6,20 @@ import { CreditCardsComponent } from './page/credit-cards/credit-cards.component
 import { LoansComponent } from './page/loans/loans.component';
 import { InvestmentsComponent } from './page/investments/investments.component';
 import { SettingComponent } from './page/setting/setting.component';
-import { MyPrivilegesComponent } from './page/my-privileges/my-privileges.component';
 import { ServicesComponent } from './page/services/services.component';
 import { RegistrationComponent } from './page/registration/registration.component';
 import { authGuard } from './guards/authGuard';
 import { LoginComponent } from './page/login/login.component';
 import { AppWrapperComponent } from './page/app-wrapper/app-wrapper.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
   {
     path: 'login',
     component: LoginComponent
@@ -21,6 +27,10 @@ export const routes: Routes = [
   {
     path: 'registration',
     component: RegistrationComponent
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent
   },
   {
     path: 'app',
@@ -58,11 +68,6 @@ export const routes: Routes = [
         data: { title: 'Setting' }
       },
       {
-        path: 'privileges',
-        component: MyPrivilegesComponent,
-        data: { title: 'Privileges' }
-      },
-      {
         path: 'services',
         component: ServicesComponent,
         data: { title: 'Services' }
@@ -76,6 +81,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'login'
+    component: NotFoundComponent
   }
 ];

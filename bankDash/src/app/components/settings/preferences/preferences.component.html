@@ -1,1 +1,35 @@
-<p>preferences works!</p>
+<form [formGroup]="form" class="user-form" (ngSubmit)="submit()">
+  <div class="user-form__row">
+    <div class="user-form__field">
+      <label>Currency</label>
+      <input type="text" placeholder="USD" formControlName="currency" />
+    </div>
+
+    <div class="user-form__field">
+      <label>Time Zone</label>
+      <input
+        type="text"
+        placeholder="(GMT-12:00) International Date Line West"
+        formControlName="timeZone"
+      />
+    </div>
+  </div>
+
+  <div class="user-form__notifications">
+    <h3 class="user-form__notifications-title">Notification</h3>
+
+    <div class="user-form__toggles">
+      <mat-slide-toggle formControlName="notifyCurrency"
+        >I send or receive digita currency</mat-slide-toggle
+      >
+      <mat-slide-toggle formControlName="notifyOrder">I receive merchant order</mat-slide-toggle>
+      <mat-slide-toggle formControlName="notifyRecommendation"
+        >There are recommendation for my account</mat-slide-toggle
+      >
+    </div>
+  </div>
+
+  <div class="user-form__actions">
+    <button type="submit" mat-flat-button [disabled]="form.invalid">Save</button>
+  </div>
+</form>

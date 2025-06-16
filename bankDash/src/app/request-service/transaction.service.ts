@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TransactionItem, TransactionSummary } from '../store/transactions/transactions.interface';
+import { TransactionItem, TransactionSummary } from '../interfaces/transactions.interface';
 import { Observable } from 'rxjs';
 import { BaseService } from './base.service';
 

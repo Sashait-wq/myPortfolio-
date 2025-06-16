@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 
 @Component({
-  selector: 'app-services',
+  selector: 'app-request-service',
   imports: [MatButton],
   templateUrl: './services.component.html',
   styleUrl: './services.component.scss'

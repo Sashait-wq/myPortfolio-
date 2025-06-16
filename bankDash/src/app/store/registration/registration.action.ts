@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IRegistrationData } from './registration-data.interface';
+import { IRegistrationData } from '../../interfaces/registration-data.interface';
 
 export enum RegistrationUsers {
   Register = '[Auth] Register',

@@ -15,13 +15,31 @@
         />
       </div>
 
-      <button type="button" mat-icon-button class="settings-button" aria-label="Settings">
+      <button
+        routerLink="settings"
+        type="button"
+        mat-icon-button
+        class="settings-button"
+        aria-label="Settings"
+      >
         <mat-icon>settings</mat-icon>
       </button>
 
-      <button type="button" mat-icon-button class="notification-button" aria-label="Notifications">
+      <button
+        type="button"
+        mat-icon-button
+        class="notification-button"
+        [matMenuTriggerFor]="menu"
+        aria-label="Notifications"
+      >
         <mat-icon>notifications_unread</mat-icon>
       </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable alerts</span>
+        </button>
+      </mat-menu>
 
       <div class="user-avatar"></div>
     </div>

@@ -1,0 +1,65 @@
+.header-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &__item {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+  }
+
+  .card {
+    display: flex;
+    flex: 1;
+
+    &__statistic {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    &__ATM {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      background: var(--bg-white);
+      padding: 30px;
+      border-radius: 25px;
+    }
+  }
+
+  .card-list {
+    flex: 1;
+  }
+}
+.title {
+  font-size: 22px;
+  color: var(--text-heading);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 250px;
+  gap: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-steel-blue);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}

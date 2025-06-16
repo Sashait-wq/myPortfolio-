@@ -3,7 +3,7 @@ import { AbstractControl, FormGroup, FormsModule, ReactiveFormsModule } from '@a
 import { MatButton } from '@angular/material/button';
 import { RegistrationForm } from '../../interfaces/registration.interface';
 import { Store } from '@ngrx/store';
-import { IRegistrationData } from '../../store/registration/registration-data.interface';
+import { IRegistrationData } from '../../interfaces/registration-data.interface';
 import { FormService } from '../../services/form.service';
 import { register } from '../../store/registration/registration.action';
 import { RouterLink } from '@angular/router';
@@ -15,10 +15,10 @@ import { RouterLink } from '@angular/router';
   styleUrl: './registration.component.scss'
 })
 export class RegistrationComponent implements OnInit {
-  store = inject(Store);
+  private store = inject(Store);
 
-  form!: FormGroup<RegistrationForm>;
-  formsService = inject(FormService);
+  public form!: FormGroup<RegistrationForm>;
+  private formsService = inject(FormService);
 
   ngOnInit(): void {
     this.form = this.formsService.createForm();

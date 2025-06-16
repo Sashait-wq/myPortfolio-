@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { TransactionItem, TransactionSummary } from './transactions.interface';
+import { TransactionItem, TransactionSummary } from '../../interfaces/transactions.interface';
 
 export enum TransactionsActionTypes {
   LoadTransactions = '[Load] All Transactions',

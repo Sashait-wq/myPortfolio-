@@ -26,7 +26,6 @@ export class CardMaskPipe implements PipeTransform {
       return `${maskedGroup} ${end}`;
     }
 
-    // mode === 'both'
     const start = clean.slice(0, visibleCount);
     const end = clean.slice(-visibleCount);
     return `${start} ${maskedGroup} ${maskedGroup} ${end}`;

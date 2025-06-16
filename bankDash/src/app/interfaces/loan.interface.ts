@@ -8,8 +8,8 @@ export interface Loan {
   paidAmount: number;
   leftToRepay: number;
   installment: number;
-  startDate: string; // ISO date string
-  nextPaymentDate: string; // ISO date string
+  startDate: string;
+  nextPaymentDate: string;
 }
 
 export interface Summary {

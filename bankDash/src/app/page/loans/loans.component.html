@@ -5,8 +5,8 @@
         <img src="assets/loanImg/loan-user.svg" />
       </div>
       <div class="loan-overview__card-content">
-        <a href="#">Personal Loans</a>
-        @if (loanInfoLoad) {
+        <span>Personal Loans</span>
+        @if (loader | async) {
           <ngx-skeleton-loader
             count="1"
             appearance="line"
@@ -23,8 +23,8 @@
         <img src="assets/loanImg/briefcase.svg" />
       </div>
       <div class="loan-overview__card-content">
-        <a href="#">Corporate Loans</a>
-        @if (loanInfoLoad) {
+        <span>Corporate Loans</span>
+        @if (loader | async) {
           <ngx-skeleton-loader
             count="1"
             appearance="line"
@@ -41,8 +41,8 @@
         <img src="assets/loanImg/graph.svg" />
       </div>
       <div class="loan-overview__card-content">
-        <a href="#">Business Loans</a>
-        @if (loanInfoLoad) {
+        <span>Business Loans</span>
+        @if (loader | async) {
           <ngx-skeleton-loader
             count="1"
             appearance="line"
@@ -59,8 +59,8 @@
         <img src="assets/loanImg/support.svg" />
       </div>
       <div class="loan-overview__card-content">
-        <a href="#">Custom Loans</a>
-        @if (loanInfoLoad) {
+        <span>Custom Loans</span>
+        @if (loader | async) {
           <ngx-skeleton-loader
             count="1"
             appearance="line"
@@ -73,7 +73,7 @@
     </div>
   </div>
 
-  @if (loader) {
+  @if (loader | async) {
     <ngx-skeleton-loader
       count="7"
       appearance="line"

@@ -2,23 +2,26 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { transactionsLoad } from '../../store/transactions/transactions.action';
-import { transactionsSelector } from '../../store/transactions/transactions.selectors';
 import {
-  TransactionItem,
-  TransactionSummary
-} from '../../store/transactions/transactions.interface';
+  transactionsLoadingSelector,
+  transactionsSelector
+} from '../../store/transactions/transactions.selectors';
+import { TransactionItem, TransactionSummary } from '../../interfaces/transactions.interface';
 import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
-import { DatePipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { MatButton } from '@angular/material/button';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-transactions',
-  imports: [MatTableModule, NgxSkeletonLoaderComponent, DatePipe, MatButton],
+  imports: [MatTableModule, NgxSkeletonLoaderComponent, DatePipe, MatButton, AsyncPipe],
   templateUrl: './transactions.component.html',
   styleUrl: './transactions.component.scss'
 })
 export class TransactionsComponent implements OnInit {
-  displayedColumns: string[] = [
+  private store = inject(Store);
+
+  public displayedColumns: string[] = [
     'Description',
     'TransactionID',
     'Type',
@@ -27,26 +30,17 @@ export class TransactionsComponent implements OnInit {
     'Amount'
   ];
 
-  loader: boolean = true;
-  summaryLoader: boolean = true;
+  public loader$: Observable<boolean> = this.store.select(transactionsLoadingSelector);
 
-  dataSource: TransactionItem[] = [];
+  public dataSource: TransactionItem[] = [];
 
-  summary: TransactionSummary | null = null;
+  public summary: TransactionSummary | null = null;
 
-  store = inject(Store);
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.store.dispatch(transactionsLoad());
     this.store.select(transactionsSelector).subscribe((response) => {
       this.dataSource = response.transactions;
       this.summary = response.summary;
-
-      this.loader = false;
-
-      if (response.summary && Object.keys(response.summary).length > 0) {
-        this.summaryLoader = false;
-      }
     });
   }
 }

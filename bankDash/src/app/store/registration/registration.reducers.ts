@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { registerFailure, registerSuccess } from './registration.action';
-import { IRegistrationData } from './registration-data.interface';
+import { register, registerFailure, registerSuccess } from './registration.action';
+import { IRegistrationData } from '../../interfaces/registration-data.interface';
 
 export interface RegistrationState {
   form: IRegistrationData;
@@ -28,6 +28,11 @@ const initialState: RegistrationState = {
 export const registerReducer = createReducer(
   initialState,
 
+  on(register, (state, user) => ({
+    ...state,
+    user,
+    error: null
+  })),
   on(registerSuccess, (state, { user }) => ({
     ...state,
     form: { ...user },

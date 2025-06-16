@@ -27,14 +27,14 @@
     justify-content: center;
     gap: 8px;
 
-    a {
+    span:first-child {
       font-size: 16px;
       color: #718ebf;
       font-weight: 400;
       white-space: nowrap;
     }
 
-    span {
+    span:last-child {
       font-size: 20px;
       font-weight: 500;
       color: #232323;

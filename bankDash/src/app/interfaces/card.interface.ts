@@ -1,7 +1,7 @@
 export interface Card {
-  Balance: number;
-  cardHolder: string;
-  validThru: number;
-  numberCard: number;
-  typeCard: string;
+  cardType: string;
+  nameOnCard: string;
+  cardNumber: string;
+  expirationDate: string;
+  balance: string;
 }

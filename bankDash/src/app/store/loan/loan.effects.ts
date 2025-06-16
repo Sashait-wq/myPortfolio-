@@ -1,8 +1,15 @@
 import { inject, Injectable } from '@angular/core';
-import { LoanService } from '../../services/loan.service';
+import { LoanService } from '../../request-service/loan.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { loadLoan, loadLoanInfo, loadLoanInfoSuccess, loadLoanSuccess } from './shopOne.action';
-import { map, switchMap } from 'rxjs';
+import {
+  loadLoan,
+  loadLoanError,
+  loadLoanInfo,
+  loadLoanInfoError,
+  loadLoanInfoSuccess,
+  loadLoanSuccess
+} from './loan.action';
+import { catchError, map, of, switchMap } from 'rxjs';
 
 @Injectable()
 export class LoanEffects {
@@ -20,6 +27,9 @@ export class LoanEffects {
               total: loans.total,
               data: loans.data
             });
+          }),
+          catchError((error) => {
+            return of(loadLoanError({ error }));
           })
         )
       )
@@ -33,6 +43,9 @@ export class LoanEffects {
         this.service.loanBaseInfo().pipe(
           map((loanInfo) => {
             return loadLoanInfoSuccess({ loanInfo });
+          }),
+          catchError((error) => {
+            return of(loadLoanInfoError({ error }));
           })
         )
       )

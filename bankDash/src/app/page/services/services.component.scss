@@ -26,14 +26,14 @@
     flex-direction: column;
     gap: 8px;
 
-    span {
+    span:first-child {
       font-size: 20px;
       color: #232323;
       font-weight: 500;
       white-space: nowrap;
     }
 
-    a {
+    span:last-child {
       font-size: 16px;
       color: #718ebf;
       font-weight: 400;
@@ -61,8 +61,6 @@
   background: #dcfaf8;
 }
 
-// ========== BANK SERVICE ==========
-
 .bank-service-list {
   display: flex;
   flex-direction: column;
@@ -74,6 +72,15 @@
     font-weight: 500;
     color: #343c6a;
   }
+}
+
+.bank-service-scroll-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 500px;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .bank-service {
@@ -88,12 +95,12 @@
     display: flex;
     gap: 20px;
 
-    span {
+    span:first-child {
       font-size: 16px;
       color: #232323;
     }
 
-    a {
+    span:last-child {
       font-size: 15px;
       color: #718ebf;
     }
@@ -115,13 +122,13 @@
     flex-direction: column;
     gap: 7px;
 
-    span {
+    span:first-child {
       font-size: 16px;
       font-weight: 500;
       color: #232323;
     }
 
-    a {
+    span:last-child {
       font-size: 15px;
       color: #718ebf;
       font-weight: 400;

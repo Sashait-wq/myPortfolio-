@@ -34,6 +34,16 @@
       font-weight: 500;
     }
   }
+
+  &__log-out {
+    display: flex;
+    align-items: end;
+    height: 100%;
+
+    button {
+      flex: 1;
+    }
+  }
 }
 
 .activated {

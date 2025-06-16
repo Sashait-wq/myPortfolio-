@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { delay, Observable, of } from 'rxjs';
-import { Loan, Summary } from '../store/loan/loan.interface';
+import { Loan, Summary } from '../interfaces/loan.interface';
 
 export interface LoanInformation {
   personal: number;

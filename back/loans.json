@@ -2,6 +2,7 @@
   "loans": [
     {
       "id": "1",
+      "userId": "1",
       "loanNumber": "LN001",
       "amount": 100000,
       "duration": 8,
@@ -15,6 +16,7 @@
     },
     {
       "id": "2",
+      "userId": "1",
       "loanNumber": "LN002",
       "amount": 500000,
       "duration": 36,
@@ -28,6 +30,7 @@
     },
     {
       "id": "3",
+      "userId": "1",
       "loanNumber": "LN003",
       "amount": 900000,
       "duration": 12,
@@ -41,6 +44,7 @@
     },
     {
       "id": "4",
+      "userId": "1",
       "loanNumber": "LN004",
       "amount": 50000,
       "duration": 25,
@@ -53,6 +57,8 @@
       "nextPaymentDate": "2024-02-01T00:00:00Z"
     },
     {
+      "id": "5",
+      "userId": "1",
       "loanNumber": "LN005",
       "amount": 50000,
       "duration": 5,
@@ -65,6 +71,8 @@
       "nextPaymentDate": "2024-02-01T00:00:00Z"
     },
     {
+      "id": "6",
+      "userId": "1",
       "loanNumber": "LN006",
       "amount": 80000,
       "duration": 14,
@@ -78,6 +86,7 @@
     },
     {
       "id": "7",
+      "userId": "1",
       "loanNumber": "LN007",
       "amount": 12000,
       "duration": 9,
@@ -91,6 +100,7 @@
     },
     {
       "id": "8",
+      "userId": "1",
       "loanNumber": "LN008",
       "amount": 160000,
       "duration": 3,

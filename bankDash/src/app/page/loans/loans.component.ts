@@ -1,29 +1,29 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButton } from '@angular/material/button';
-import { Loan, Summary } from '../../store/loan/loan.interface';
+import { Loan, Summary } from '../../interfaces/loan.interface';
 import { Store } from '@ngrx/store';
-import { loadLoan, loadLoanInfo } from '../../store/loan/shopOne.action';
-import { loanInfoSelector, loanSelector } from '../../store/loan/shopOne.selectors';
-import { LoanInformation } from '../../services/loan.service';
+import { loadLoan, loadLoanInfo } from '../../store/loan/loan.action';
+import { loanInfoSelector, loanLoading, loanSelector } from '../../store/loan/loan.selectors';
+import { LoanInformation } from '../../request-service/loan.service';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-loans',
-  imports: [MatTableModule, MatButton, NgxSkeletonLoaderModule],
+  imports: [MatTableModule, MatButton, NgxSkeletonLoaderModule, AsyncPipe],
   templateUrl: './loans.component.html',
   styleUrl: './loans.component.scss'
 })
 export class LoansComponent implements OnInit {
   store = inject(Store);
-
   total: Summary | null = null;
 
-  loanInfoLoad: boolean = true;
+  loader: Observable<boolean> = this.store.select(loanLoading);
   loanInformation: LoanInformation | null = null;
 
-  loader: boolean = true;
-  dataSource: Loan[] = [];
+  dataSource = new MatTableDataSource<Loan>();
 
   displayedColumns: string[] = [
     'slNo',
@@ -39,17 +39,13 @@ export class LoansComponent implements OnInit {
     this.store.dispatch(loadLoanInfo());
 
     this.store.select(loanInfoSelector).subscribe((loanInfo) => {
-      if (loanInfo && Object.keys(loanInfo).length > 0) {
-        this.loanInformation = loanInfo;
-        this.loanInfoLoad = false;
-      }
+      this.loanInformation = loanInfo;
     });
 
     this.store.dispatch(loadLoan());
     this.store.select(loanSelector).subscribe((loans) => {
-      this.dataSource = loans.data;
+      this.dataSource.data = loans.data;
       this.total = loans.total;
-      this.loader = false;
     });
   }
 }

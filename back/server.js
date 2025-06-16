@@ -670,9 +670,111 @@ app.put("/api/profile/password", authMiddleware, async (req, res) => {
   }
 });
 
+// Получение списка пользователей (моковые данные, без паролей)
+app.get("/api/users", async (req, res) => {
+  try {
+    const usersData = await readUsers();
+    // Возвращаем только id, username, email и профиль (без пароля)
+    const users = usersData.users.map(u => ({
+      id: u.id,
+      username: u.username,
+      email: u.email,
+      profile: u.profile,
+    }));
+    res.json({ users });
+  } catch (error) {
+    res.status(500).json({ message: "Ошибка при получении пользователей" });
+  }
+});
+
 // Тестовый маршрут
 app.get("/api/test", (req, res) => {
   res.json({ message: "Бэкенд работает!" });
+});
+
+// Дашборд: агрегированные данные пользователя
+app.get("/api/dashboard", authMiddleware, async (req, res) => {
+  try {
+    const cardsData = await readCards();
+    const userCards = cardsData.cards.filter(card => card.userId === req.user.userId);
+    const transactionsData = await readTransactions();
+    const userTransactions = transactionsData.transactions.filter(t => t.userId === req.user.userId);
+    const balance = userTransactions.reduce((sum, t) => sum + t.amount, 0);
+    const recentTransactions = [...userTransactions]
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .slice(0, 5)
+      .map(t => ({
+        id: t.id,
+        description: t.description,
+        type: t.type,
+        amount: t.amount,
+        date: t.date,
+        cardNumber: t.cardNumber || null
+      }));
+    const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const weeklyActivity = {
+      days: weekDays,
+      deposit: Array(7).fill(0),
+      withdraw: Array(7).fill(0),
+    };
+    userTransactions.forEach(t => {
+      const day = new Date(t.date).getDay();
+      if (t.amount > 0) weeklyActivity.deposit[day] += t.amount;
+      if (t.amount < 0) weeklyActivity.withdraw[day] += Math.abs(t.amount);
+    });
+    const categoryMap = {};
+    let totalExpense = 0;
+    userTransactions.forEach(t => {
+      if (t.amount < 0) {
+        const cat = t.type || "Others";
+        categoryMap[cat] = (categoryMap[cat] || 0) + Math.abs(t.amount);
+        totalExpense += Math.abs(t.amount);
+      }
+    });
+    const expenseStats = Object.entries(categoryMap).map(([category, value]) => ({
+      category,
+      percent: totalExpense ? Math.round((value / totalExpense) * 100) : 0,
+    }));
+    const transferMap = {};
+    userTransactions.forEach(t => {
+      if ((t.type || "").toLowerCase().includes("transfer") && t.description) {
+        transferMap[t.description] = (transferMap[t.description] || 0) + 1;
+      }
+    });
+    const quickTransfer = Object.entries(transferMap)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([name, count]) => ({ name, count }));
+    const balanceHistoryMap = {};
+    userTransactions.forEach(t => {
+      const d = new Date(t.date);
+      const key = `${d.getFullYear()}-${(d.getMonth() + 1).toString().padStart(2, "0")}`;
+      balanceHistoryMap[key] = (balanceHistoryMap[key] || 0) + t.amount;
+    });
+    const months = Object.keys(balanceHistoryMap).sort();
+    const balanceHistory = months.map(month => ({
+      month,
+      balance: Math.round(balanceHistoryMap[month] * 100) / 100,
+    }));
+    res.json({
+      cards: userCards.map(card => ({
+        id: card.id,
+        cardType: card.cardType,
+        nameOnCard: card.nameOnCard,
+        cardNumber: maskCardNumber(card.cardNumber),
+        expirationDate: card.expirationDate,
+        balance: balance,
+      })),
+      recentTransactions,
+      balance: Math.round(balance * 100) / 100,
+      weeklyActivity,
+      expenseStats,
+      quickTransfer,
+      balanceHistory,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Ошибка при получении данных дашборда" });
+  }
 });
 
 // Запуск сервера
