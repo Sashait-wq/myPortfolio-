@@ -13,7 +13,7 @@ export interface LoanInformation {
   providedIn: 'root'
 })
 export class LoanService extends BaseService {
-  public getLoan(): Observable<{ total: Summary; data: Loan[] }> {
+  public getLoan(): Observable<{ summary: Summary; loans: Loan[] }> {
     return this.get('loans', { userId: '1748540818058' });
   }
 

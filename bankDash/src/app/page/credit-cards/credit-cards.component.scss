@@ -5,14 +5,14 @@
 
   &__item {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(331px, 1fr));
     gap: 20px;
-    width: 100%;
   }
 
   .card {
     display: flex;
-    flex: 1;
+    gap: 25px;
+    align-items: center;
 
     &__statistic {
       display: flex;
@@ -24,15 +24,75 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      max-width: 237px;
+      width: 100%;
+      min-height: 237px;
       gap: 15px;
       background: var(--bg-white);
-      padding: 30px;
+      padding: 20px 8px;
       border-radius: 25px;
     }
   }
 
   .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     flex: 1;
+
+    &__items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 237px;
+    }
+
+    &__item-ATM {
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      padding: 13px 8px;
+      border-radius: 16px;
+      justify-content: space-between;
+    }
+
+    &__info {
+      display: flex;
+      gap: 20px;
+    }
+
+    &__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 45px;
+      width: 45px;
+      border-radius: 15px;
+      flex-shrink: 0;
+    }
+
+    &__text,
+    &__detail {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+
+      span:first-child {
+        font-size: 12px;
+        font-weight: 500;
+        color: #232323;
+      }
+
+      span:last-child {
+        font-size: 12px;
+        color: #718ebf;
+        font-weight: 400;
+      }
+    }
+
+    &__info {
+      align-items: center;
+    }
   }
 }
 .title {
@@ -44,8 +104,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 250px;
-  gap: 20px;
+  align-items: flex-start;
+  gap: 12px 20px;
 }
 
 .legend-item {
@@ -62,4 +122,8 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
+}
+
+.dbl-bank {
+  background: #ffe0eb;
 }

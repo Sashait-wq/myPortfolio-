@@ -24,8 +24,8 @@ export class LoanEffects {
           map((loans) => {
             console.log('API response:', loans);
             return loadLoanSuccess({
-              total: loans.total,
-              data: loans.data
+              total: loans.summary,
+              data: loans.loans
             });
           }),
           catchError((error) => {

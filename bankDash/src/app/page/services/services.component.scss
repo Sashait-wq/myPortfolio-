@@ -86,10 +86,10 @@
 .bank-service {
   display: flex;
   align-items: center;
-  flex: 1;
   background: #ffffff;
   padding: 23px 30px 23px 15px;
   border-radius: 20px;
+  justify-content: space-between;
 
   &__info {
     display: flex;
@@ -142,8 +142,6 @@
   &__info,
   &__detail,
   &__action {
-    flex: 1 1 200px;
-    justify-content: center;
     align-items: center;
   }
 }

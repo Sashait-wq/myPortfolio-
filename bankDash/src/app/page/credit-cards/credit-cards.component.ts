@@ -6,10 +6,11 @@ import { creditCardSelector } from '../../store/credit-card/credit-card.selector
 import { Card } from '../../interfaces/card.interface';
 import { ApexChart, ApexLegend, ApexNonAxisChartSeries, NgApexchartsModule } from 'ng-apexcharts';
 import { NgForOf } from '@angular/common';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-credit-cards',
-  imports: [CardItemComponent, NgApexchartsModule, NgForOf],
+  imports: [CardItemComponent, NgApexchartsModule, NgForOf, MatButton],
   templateUrl: './credit-cards.component.html',
   styleUrl: './credit-cards.component.scss'
 })
@@ -29,7 +30,7 @@ export class CreditCardsComponent implements OnInit {
 
   public chart: ApexChart = {
     type: 'donut',
-    width: 205
+    width: 141
   };
 
   public labels: string[] = ['DBL Bank', 'BRC Bank', 'ABM Bank', 'MCP Bank'];

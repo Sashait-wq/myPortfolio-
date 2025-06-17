@@ -16,15 +16,18 @@ import { registerSelector } from '../../../store/registration/registration.selec
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent implements OnInit {
-  form!: FormGroup<RegistrationForm>;
   formsService = inject(FormService);
+  form: FormGroup<RegistrationForm> = this.formsService.createForm();
+
+  constructor() {
+    this.form.controls.address.setValidators([]);
+    this.form.updateValueAndValidity();
+  }
 
   store = inject(Store);
   profileService = inject(RegistrationService);
 
   ngOnInit(): void {
-    this.form = this.formsService.createForm();
-
     this.store.select(registerSelector).subscribe((value) => {
       this.form.patchValue(value);
     });
