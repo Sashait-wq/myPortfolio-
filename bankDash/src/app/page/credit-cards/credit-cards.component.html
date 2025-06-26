@@ -1,16 +1,10 @@
-<div class="header-card">
-  <h2 class="title">My Cards</h2>
+<div class="cards-dashboard">
+  <app-cards [cards]="creditCards"></app-cards>
 
-  <div class="header-card__item">
-    @for (item of creditCards; track item) {
-      <app-card-item [card]="item"></app-card-item>
-    }
-  </div>
-
-  <div class="card">
-    <div class="card__statistic">
-      <h2 class="title">Card Expense Statistics</h2>
-      <div class="card__ATM">
+  <div class="cards-dashboard__content">
+    <div class="cards-dashboard__statistics">
+      <h2 class="cards-dashboard__title">Card Expense Statistics</h2>
+      <div class="cards-dashboard__chart">
         <apx-chart
           [series]="series"
           [chart]="chart"
@@ -19,65 +13,190 @@
           [legend]="legend"
         ></apx-chart>
 
-        <div class="legend">
-          <div class="legend-item" *ngFor="let label of labels; let i = index">
-            <span class="dot" [style.background]="colors[i]"></span>
+        <div class="chart-legend">
+          <div class="chart-legend__item" *ngFor="let label of labels; let i = index">
+            <span class="chart-legend__dot" [style.background]="colors[i]"></span>
             <span>{{ label }}</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="card-list">
-      <h2 class="title">Card List</h2>
+    <div class="cards-dashboard__list">
+      <h2 class="cards-dashboard__title">Card List</h2>
 
-      <div class="card-list__items">
-        <div class="card-list__item-ATM">
-          <div class="card-list__info">
-            <div class="card-list__icon dbl-bank">
+      <div class="cards-list">
+        <div class="cards-list__item">
+          <div class="cards-list__info">
+            <div class="cards-list__icon cards-list__icon--dbl-bank">
               <img src="assets/serviceImg/service-loan.svg" />
             </div>
-            <div class="card-list__text">
+            <div class="cards-list__text">
               <span>Business loans</span>
               <span>It is a long established</span>
             </div>
           </div>
-          <div class="card-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
-          <div class="card-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
-          <div class="card-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
-          <div class="bank-service__action"><button mat-stroked-button>View Details</button></div>
+          <div class="cards-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
+          <div class="cards-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
+          <div class="cards-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
+          <div class="cards-list__action"><button mat-stroked-button>View Details</button></div>
         </div>
 
-        <div class="card-list__item-ATM">
-          <div class="card-list__info">
-            <div class="card-list__icon dbl-bank">
+        <div class="cards-list__item">
+          <div class="cards-list__info">
+            <div class="cards-list__icon cards-list__icon--dbl-bank">
               <img src="assets/serviceImg/service-loan.svg" />
             </div>
-            <div class="card-list__text">
+            <div class="cards-list__text">
               <span>Business loans</span>
               <span>It is a long established</span>
             </div>
           </div>
-          <div class="card-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
-          <div class="card-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
-          <div class="card-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
-          <div class="bank-service__action"><button mat-stroked-button>View Details</button></div>
+          <div class="cards-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
+          <div class="cards-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
+          <div class="cards-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
+          <div class="cards-list__action"><button mat-stroked-button>View Details</button></div>
         </div>
 
-        <div class="card-list__item-ATM">
-          <div class="card-list__info">
-            <div class="card-list__icon dbl-bank">
+        <div class="cards-list__item">
+          <div class="cards-list__info">
+            <div class="cards-list__icon cards-list__icon--dbl-bank">
               <img src="assets/serviceImg/service-loan.svg" />
             </div>
-            <div class="card-list__text">
+            <div class="cards-list__text">
               <span>Business loans</span>
               <span>It is a long established</span>
             </div>
           </div>
-          <div class="card-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
-          <div class="card-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
-          <div class="card-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
-          <div class="bank-service__action"><button mat-stroked-button>View Details</button></div>
+          <div class="cards-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
+          <div class="cards-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
+          <div class="cards-list__detail"><span>Lorem Ipsum</span><span>Many publishing</span></div>
+          <div class="cards-list__action"><button mat-stroked-button>View Details</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards-dashboard__form-section">
+    <form [formGroup]="form" class="user-form" (ngSubmit)="submit()">
+      <h2 class="user-form__title">Add New Card</h2>
+      <div class="user-form__content">
+        <p class="user-form__description">
+          Credit Card generally means a plastic card issued by Scheduled Commercial Banks assigned
+          to a Cardholder, with a credit limit, that can be used to purchase goods and services on
+          credit or obtain cash advances.
+        </p>
+        <div class="user-form__fields">
+          <div class="user-form__row">
+            <mat-form-field appearance="outline" class="user-form__field">
+              <mat-label>Card Type</mat-label>
+              <mat-select formControlName="cardType">
+                @for (option of cardTypeOptions; track option) {
+                  <mat-option [value]="option.value">
+                    {{ option.label }}
+                  </mat-option>
+                }
+              </mat-select>
+
+              @if (form.controls.cardType.hasError('required')) {
+                <mat-error>Expiration card type is required</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="user-form__field">
+              <mat-label>Card Number</mat-label>
+              <input matInput placeholder="**** **** **** ****" formControlName="cardNumber" />
+
+              @if (form.controls.cardNumber.hasError('required')) {
+                <mat-error>Expiration card number is required</mat-error>
+              }
+              @if (form.controls.cardNumber.hasError('pattern')) {
+                <mat-error>Format must be 16 symbols</mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <div class="user-form__row">
+            <mat-form-field appearance="outline" class="user-form__field">
+              <mat-label>Name On Card</mat-label>
+              <input matInput placeholder="My Cards" formControlName="nameOnCard" />
+
+              @if (form.controls.nameOnCard.hasError('required')) {
+                <mat-error>Expiration name card is required</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="user-form__field">
+              <mat-label>Expiration Date</mat-label>
+              <input
+                type="date"
+                matInput
+                placeholder="25 January 2025"
+                formControlName="expirationDate"
+              />
+
+              @if (form.controls.expirationDate.hasError('required')) {
+                <mat-error>Expiration date is required</mat-error>
+              }
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="user-form__actions">
+          <button type="submit" mat-flat-button [disabled]="form.invalid">Add Card</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="card-settings">
+      <h2 class="card-settings__title">Card Setting</h2>
+      <div class="card-settings__group">
+        <div class="card-settings__item">
+          <div class="card-settings__icon card-settings__icon--block">
+            <img src="assets/creditCardImg/001-block-credit-card.svg" />
+          </div>
+          <div class="card-settings__info">
+            <span class="card-settings__label">Block Card</span>
+            <span class="card-settings__description">Instantly block your card</span>
+          </div>
+        </div>
+
+        <div class="card-settings__item">
+          <div class="card-settings__icon card-settings__icon--pin">
+            <img src="assets/creditCardImg/001-block-credit-card.svg" />
+          </div>
+          <div class="card-settings__info">
+            <span class="card-settings__label">Change Pin Code</span>
+            <span class="card-settings__description">Choose another pin code</span>
+          </div>
+        </div>
+
+        <div class="card-settings__item">
+          <div class="card-settings__icon card-settings__icon--google">
+            <img src="assets/creditCardImg/001-block-credit-card.svg" />
+          </div>
+          <div class="card-settings__info">
+            <span class="card-settings__label">Add to Google Pay</span>
+            <span class="card-settings__description">Withdraw without any card</span>
+          </div>
+        </div>
+
+        <div class="card-settings__item">
+          <div class="card-settings__icon card-settings__icon--apple">
+            <img src="assets/creditCardImg/001-block-credit-card.svg" />
+          </div>
+          <div class="card-settings__info">
+            <span class="card-settings__label">Add to Apple Pay</span>
+            <span class="card-settings__description">Withdraw without any card</span>
+          </div>
+        </div>
+
+        <div class="card-settings__item">
+          <div class="card-settings__icon card-settings__icon--apple">
+            <img src="assets/creditCardImg/001-block-credit-card.svg" />
+          </div>
+          <div class="card-settings__info">
+            <span class="card-settings__label">Add to Apple Store</span>
+            <span class="card-settings__description">Withdraw without any card</span>
+          </div>
         </div>
       </div>
     </div>

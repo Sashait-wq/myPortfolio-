@@ -1,0 +1,240 @@
+.main-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__link {
+    font-size: 1.0625rem;
+    color: var(--text-heading);
+    font-weight: 600;
+  }
+
+  &__section-transactions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__heading {
+    font-size: 1.25rem;
+    color: var(--text-heading);
+  }
+
+  &__transaction-list {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-white);
+    padding: 1.5625rem;
+    border-radius: 1.5625rem;
+    width: 25rem;
+    height: 12.4375rem;
+    overflow-y: scroll;
+    gap: 0.625rem;
+  }
+
+  &__transaction-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__transaction-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__transaction-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.4375rem;
+    width: 3.4375rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+  }
+
+  &__transaction-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4375rem;
+  }
+
+  &__transaction-title {
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  &__transaction-date {
+    color: var(--text-secondary);
+    font-size: 1rem;
+  }
+
+  &__amount-positive {
+    color: var(--text-success);
+  }
+
+  &__amount-negative {
+    color: var(--text-error);
+  }
+
+  &__graphs {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__graph-activity,
+  &__graph-expense {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__graph-chart {
+    background: var(--bg-white);
+    border-radius: 1.5625rem;
+    padding: 0.625rem;
+  }
+
+  &__graph-pie {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-white);
+    border-radius: 1.5625rem;
+    height: 100%;
+    padding: 1.5625rem;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__transfer-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__transfer-content {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-white);
+    padding: 1.5625rem;
+    gap: 1.25rem;
+    border-radius: 1.5625rem;
+    width: 27.8125rem;
+  }
+
+  &__transfer-users {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.75rem;
+  }
+
+  &__user-icon {
+    height: 4.375rem;
+    width: 4.375rem;
+    border-radius: 50%;
+    background: var(--text-secondary);
+  }
+
+  &__user-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__user-name {
+    color: var(--text-primary);
+    font-size: 1rem;
+  }
+
+  &__user-role {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+  }
+
+  &__no-users {
+    font-size: 1.1rem;
+    color: var(--text-heading);
+    font-weight: 500;
+  }
+
+  &__user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  &__balance-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__balance-chart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-white);
+    border-radius: 1.5625rem;
+    height: 100%;
+  }
+}
+
+.img-deposit {
+  background: var(--bg-warning);
+}
+
+.img-paypal {
+  background: var(--bg-info);
+}
+
+.img-default {
+  background: var(--bg-success);
+}
+
+.send-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.send-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.send-container {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-input);
+  border-radius: 999px;
+  padding: 0 0.5rem;
+  height: 3.125rem;
+  max-width: 16.5625rem;
+  flex: 1;
+}
+
+.send-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 1rem;
+  padding: 0.5rem;
+  width: 100%;
+}

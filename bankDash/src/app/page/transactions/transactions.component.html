@@ -1,63 +1,83 @@
-<div>
-  <div></div>
+<div class="transactions">
+  <div class="transactions__header">
+    <app-cards [cards]="cards"
+      ><a class="transactions__link" routerLink="/app/credit-cards" cards-link
+        >+ Add Card</a
+      ></app-cards
+    >
 
-  <div>
-    @if (loader$ | async) {
-      <ngx-skeleton-loader
-        count="10"
-        appearance="line"
-        [theme]="{ height: '52px', 'margin-bottom': '10px' }"
-      ></ngx-skeleton-loader>
-    } @else {
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <ng-container matColumnDef="Description">
-          <th mat-header-cell *matHeaderCellDef>Description</th>
-          <td mat-cell *matCellDef="let element">{{ element.description }}</td>
-        </ng-container>
+    <div class="transactions__expenses">
+      <h2 class="transactions__title">My Expense</h2>
+      <app-expenses-chart [transactions]="filteredData"></app-expenses-chart>
+    </div>
+  </div>
+  <div class="transactions__table">
+    <h2 class="transactions__title">Recent Transactions</h2>
 
-        <ng-container matColumnDef="TransactionID">
-          <th mat-header-cell *matHeaderCellDef>Transaction ID</th>
-          <td mat-cell *matCellDef="let element">{{ element.transactionId }}</td>
-        </ng-container>
+    <div class="transactions__button-filter">
+      <button (click)="filterByType('all')" mat-flat-button>All Transactions</button>
+      <button (click)="filterByType('income')" mat-flat-button>Income</button>
+      <button (click)="filterByType('expense')" mat-flat-button>Expense</button>
+    </div>
 
-        <ng-container matColumnDef="Type">
-          <th mat-header-cell *matHeaderCellDef>Type</th>
-          <td mat-cell *matCellDef="let element">{{ element.type }}</td>
-        </ng-container>
+    <div>
+      @if (loader$ | async) {
+        <ngx-skeleton-loader
+          count="10"
+          appearance="line"
+          [theme]="{ height: '52px', 'margin-bottom': '10px' }"
+        ></ngx-skeleton-loader>
+      } @else {
+        <table mat-table [dataSource]="filteredData" class="mat-elevation-z8">
+          <ng-container matColumnDef="Description">
+            <th mat-header-cell *matHeaderCellDef>Description</th>
+            <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+          </ng-container>
 
-        <ng-container matColumnDef="CardNumber">
-          <th mat-header-cell *matHeaderCellDef>Card</th>
-          <td mat-cell *matCellDef="let element">{{ element.cardNumber }}</td>
-        </ng-container>
+          <ng-container matColumnDef="TransactionID">
+            <th mat-header-cell *matHeaderCellDef>Transaction ID</th>
+            <td mat-cell *matCellDef="let element">{{ element.transactionId }}</td>
+          </ng-container>
 
-        <ng-container matColumnDef="Date">
-          <th mat-header-cell *matHeaderCellDef>Date</th>
-          <td mat-cell *matCellDef="let element">{{ element.date | date: 'short' }}</td>
-        </ng-container>
+          <ng-container matColumnDef="Type">
+            <th mat-header-cell *matHeaderCellDef>Type</th>
+            <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+          </ng-container>
 
-        <ng-container matColumnDef="Amount">
-          <th mat-header-cell *matHeaderCellDef>Amount</th>
-          <td mat-cell *matCellDef="let element">{{ element.amount }}</td>
-        </ng-container>
+          <ng-container matColumnDef="CardNumber">
+            <th mat-header-cell *matHeaderCellDef>Card</th>
+            <td mat-cell *matCellDef="let element">{{ element.cardNumber }}</td>
+          </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          <ng-container matColumnDef="Date">
+            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <td mat-cell *matCellDef="let element">{{ element.date | date: 'MMM d, y' }}</td>
+          </ng-container>
 
-        <tr class="mat-row no-data-row" *matNoDataRow>
-          <td class="mat-cell" [attr.colspan]="displayedColumns.length">
-            <div class="no-data-content">
-              <h3>No Active Transactions Found</h3>
-              <p>
-                You don’t have any active Transactions at the moment. Once you apply and get
-                approved, your Transactions will appear here.
-              </p>
-              <button mat-raised-button class="loan-overview__no-data-button">
-                Apply for a Transactions
-              </button>
-            </div>
-          </td>
-        </tr>
-      </table>
-    }
+          <ng-container matColumnDef="Amount">
+            <th mat-header-cell *matHeaderCellDef>Amount</th>
+            <td mat-cell *matCellDef="let element">{{ element.amount }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+          <tr class="mat-row no-data-row" *matNoDataRow>
+            <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+              <div class="no-data-content">
+                <h3>No Active Transactions Found</h3>
+                <p>
+                  You don’t have any active Transactions at the moment. Once you apply and get
+                  approved, your Transactions will appear here.
+                </p>
+                <button mat-raised-button class="loan-overview__no-data-button">
+                  Apply for a Transactions
+                </button>
+              </div>
+            </td>
+          </tr>
+        </table>
+      }
+    </div>
   </div>
 </div>

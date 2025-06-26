@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
-import { delay, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Loan, Summary } from '../interfaces/loan.interface';
 
 export interface LoanInformation {
@@ -23,6 +23,6 @@ export class LoanService extends BaseService {
       corporate: 500,
       business: 300,
       custom: 'Choose Money'
-    }).pipe(delay(1500));
+    });
   }
 }

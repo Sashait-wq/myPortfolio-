@@ -1,1 +1,103 @@
-<p>dashboard works!</p>
+<div class="main-dashboard">
+  <div class="main-dashboard__top">
+    <app-cards [cards]="cards">
+      <div class="main-dashboard__link" cards-link>{{ seeAll2 }}</div>
+    </app-cards>
+
+    <div class="main-dashboard__section-transactions">
+      <h2 class="main-dashboard__heading">Recent Transaction</h2>
+
+      <div class="main-dashboard__transaction-list">
+        @for (transaction of recentTransactions; track transaction.id) {
+          <div class="main-dashboard__transaction-item">
+            <div class="main-dashboard__transaction-content">
+              <div
+                [ngClass]="getClassByDescription(transaction.description)"
+                class="main-dashboard__transaction-icon"
+              >
+                <img
+                  [src]="getImageByDescription(transaction.description)"
+                  alt="{{ transaction.description }}"
+                />
+              </div>
+              <div class="main-dashboard__transaction-text">
+                <span class="main-dashboard__transaction-title">{{ transaction.description }}</span>
+                <span class="main-dashboard__transaction-date">
+                  {{ transaction.date | date: 'MMM d, y' }}
+                </span>
+              </div>
+            </div>
+            <span
+              [ngClass]="
+                transaction.amount > 0
+                  ? 'main-dashboard__amount-positive'
+                  : 'main-dashboard__amount-negative'
+              "
+              >{{ transaction.amount | currency }}</span
+            >
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="main-dashboard__graphs">
+    <div class="main-dashboard__graph-activity">
+      <h2 class="main-dashboard__heading">Weekly Activity</h2>
+
+      <div class="main-dashboard__graph-chart">
+        <app-weekly-transaction-chart [data]="weeklyActivity"></app-weekly-transaction-chart>
+      </div>
+    </div>
+
+    <div class="main-dashboard__graph-expense">
+      <h2 class="main-dashboard__heading">Expense Statistics</h2>
+
+      <div class="main-dashboard__graph-pie">
+        <app-expense-pie-chart [data]="expenseStats"></app-expense-pie-chart>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-dashboard__bottom">
+    <div class="main-dashboard__transfer-box">
+      <h2 class="main-dashboard__heading">Quick Transfer</h2>
+
+      <div class="main-dashboard__transfer-content">
+        <div class="main-dashboard__transfer-users">
+          @for (transfer of quickTransfer; track transfer) {
+            <div class="main-dashboard__user-box">
+              <div class="main-dashboard__user-icon"></div>
+              <div class="main-dashboard__user-info">
+                <span (click)="clickForName(transfer.name)" class="main-dashboard__user-name">
+                  {{ transfer.name }}
+                </span>
+                <span class="main-dashboard__user-role">Director</span>
+              </div>
+            </div>
+          } @empty {
+            <div class="main-dashboard__no-users">Empty list — no people to show.</div>
+          }
+        </div>
+
+        <form class="send-form" [formGroup]="form" (ngSubmit)="submit()">
+          <label class="send-label">Write Amount</label>
+          <div class="send-container">
+            <input formControlName="count" type="number" placeholder="525.50" class="send-input" />
+            <button type="submit" mat-flat-button [disabled]="form.invalid">
+              <span>Send</span>
+              <mat-icon>send</mat-icon>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="main-dashboard__balance-box">
+      <h2 class="main-dashboard__heading">Balance History</h2>
+      <div class="main-dashboard__balance-chart">
+        <app-balance-history-chart [data]="balanceHistory"></app-balance-history-chart>
+      </div>
+    </div>
+  </div>
+</div>

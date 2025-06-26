@@ -2,93 +2,103 @@
   "transactions": [
     {
       "id": "1",
-      "transactionId": "TXN0001",
-      "description": "Оплата в магазині",
-      "type": "1",
-      "cardNumber": "12345678",
-      "amount": -250.5,
-      "date": 1715721600000
+      "userId": "1748540818058",
+      "transactionId": "TXN1001",
+      "description": "Groceries",
+      "type": "expense",
+      "cardNumber": "1221212121212121",
+      "amount": -150.75,
+      "date": 1692316800000
     },
     {
       "id": "2",
-      "transactionId": "TXN0002",
-      "description": "Переказ від друга",
-      "type": "2",
-      "cardNumber": "87654321",
-      "amount": 500,
-      "date": 1715808000000
+      "userId": "1748540818058",
+      "transactionId": "TXN1002",
+      "description": "Restaurant",
+      "type": "expense",
+      "cardNumber": "1221212121212121",
+      "amount": -80.50,
+      "date": 1696118400000
     },
     {
       "id": "3",
-      "transactionId": "TXN0003",
-      "description": "Комісія банку",
-      "type": "3",
-      "cardNumber": "11223344",
-      "amount": -15.75,
-      "date": 1715894400000
+      "userId": "1748540818058",
+      "transactionId": "TXN1003",
+      "description": "Gas Station",
+      "type": "expense",
+      "cardNumber": "1221212121212121",
+      "amount": -60.00,
+      "date": 1698796800000
     },
     {
       "id": "4",
-      "transactionId": "TXN0004",
-      "description": "Оплата послуг інтернету",
-      "type": "1",
-      "cardNumber": "44332211",
-      "amount": -120,
-      "date": 1715980800000
+      "userId": "1748540818058",
+      "transactionId": "TXN1004",
+      "description": "Netflix",
+      "type": "expense",
+      "cardNumber": "1221212121212121",
+      "amount": -19.99,
+      "date": 1701388800000
     },
     {
       "id": "5",
-      "transactionId": "TXN0005",
-      "description": "Поповнення рахунку",
-      "type": "4",
-      "cardNumber": "12344321",
-      "amount": 1000,
-      "date": 1716067200000
+      "userId": "1748540818058",
+      "transactionId": "TXN1005",
+      "description": "Starbucks",
+      "type": "expense",
+      "cardNumber": "1221212121212121",
+      "amount": -120.00,
+      "date": 1704067200000
     },
     {
       "id": "6",
-      "transactionId": "TXN0006",
-      "description": "Покупка на маркетплейсі",
-      "type": "1",
-      "cardNumber": "99887766",
-      "amount": -340.99,
-      "date": 1716153600000
+      "userId": "1748540818058",
+      "transactionId": "TXN1006",
+      "description": "Jemi Wilson",
+      "type": "expense",
+      "cardNumber": "1221212121212121",
+      "amount": -45.25,
+      "date": 1706745600000
     },
     {
       "id": "7",
-      "transactionId": "TXN0007",
-      "description": "Кешбек",
-      "type": "5",
-      "cardNumber": "55667788",
-      "amount": 20,
-      "date": 1716240000000
+      "userId": "1748540818058",
+      "transactionId": "TXN2001",
+      "description": "Salary Payment",
+      "type": "income",
+      "cardNumber": "1221212121212121",
+      "amount": 3000,
+      "date": 1692403200000
     },
     {
       "id": "8",
-      "transactionId": "TXN0008",
-      "description": "Оплата таксі",
-      "type": "1",
-      "cardNumber": "66554433",
-      "amount": -85.25,
-      "date": 1716326400000
+      "userId": "1748540818058",
+      "transactionId": "TXN2002",
+      "description": "Refund",
+      "type": "income",
+      "cardNumber": "1221212121212121",
+      "amount": 75.00,
+      "date": 1698800000000
     },
     {
       "id": "9",
-      "transactionId": "TXN0009",
-      "description": "Нарахування заробітної плати",
-      "type": "6",
-      "cardNumber": "11112222",
-      "amount": 1500,
-      "date": 1716412800000
+      "userId": "1748540818058",
+      "transactionId": "TXN2003",
+      "description": "Deposit Paypal",
+      "type": "income",
+      "cardNumber": "1221212121212121",
+      "amount": 15.99,
+      "date": 1701450000000
     },
     {
       "id": "10",
-      "transactionId": "TXN0010",
-      "description": "Переказ на інший рахунок",
-      "type": "2",
-      "cardNumber": "22221111",
-      "amount": -600,
-      "date": 1716499200000
+      "userId": "1748540818058",
+      "transactionId": "TXN2004",
+      "description": "Deposit from my Card",
+      "type": "income",
+      "cardNumber": "1221212121212121",
+      "amount": 500.00,
+      "date": 1704200000000
     }
   ]
 } 

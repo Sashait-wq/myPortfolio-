@@ -1,0 +1,20 @@
+{
+  "LANGUAGE": {
+    "EN": "English",
+    "FR": "French"
+  },
+  "SIDE_BAR": {
+    "DASHBOARD": "Dashboard",
+    "TRANSACTIONS": "Transactions",
+    "ACCOUNTS": "Accounts",
+    "INVESTMENTS": "Investments",
+    "CREDIT_CARDS": "Credit Cards",
+    "LOANS": "Loans",
+    "SERVICES": "Services",
+    "SETTINGS": "Settings"
+  },
+  "DASHBOARD": {
+    "SEE_ALL": "See All"
+  }
+}
+

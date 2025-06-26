@@ -1,5 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-
+//@use '@angular/material' as mat;
+//@include mat.form-field-overrides(
+//  (
+//    outlined-outline-color: #00aaff,
+//    outlined-outline-width: 2px,
+//    outlined-outline-radius: 12px
+//  )
+//);
 :root {
   --text-primary: #232323;
   --text-secondary: #718ebf;
@@ -7,7 +14,7 @@
   --text-muted: #8ba3cb;
   --text-placeholder: #7a9abf;
   --text-success: #41d4a8;
-  --text-error: #ff4b4a;
+  --text-error: #ba1a1a;
   --text-disabled: #b1b1b1;
   --text-link: #1814f3;
   --text-steel-blue: #718ebf;
@@ -21,6 +28,8 @@
   --bg-alt: #e6eff5;
   --bg-primary: #4c49ed;
   --bg-link-hover: #0a06f4;
+  --mat-form-field-filled-container-color: #000;
+  --bg-input: #edf1f7;
 }
 
 html,
@@ -98,6 +107,10 @@ a {
   }
 }
 
+.mat-mdc-cell {
+  text-align: center !important;
+}
+
 // Buttons settings
 .mdc-switch__track::after {
   background: #16dbcc !important;
@@ -119,4 +132,8 @@ a {
 .mdc-label {
   font-size: 16px !important;
   color: #232323 !important;
+}
+
+.apexcharts-legend-text {
+  font-size: 1rem !important;
 }

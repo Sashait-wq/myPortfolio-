@@ -2,60 +2,57 @@
   <div>
     <a class="side-bar_link" routerLink="dashboard">
       <img src="assets/headerImg/iconfinder.svg" alt="Іконка панелі керування" />
-      <span>Dashboard</span>
+      <span>{{ 'SIDE_BAR.DASHBOARD' | translate }}</span>
     </a>
   </div>
   <ul class="side-bar_list">
     <li>
       <a routerLink="dashboard" routerLinkActive="activated">
         <img src="assets/sideBarImg/vector.svg" alt="Іконка панелі керування" />
-        <span>Dashboard</span>
+        <span>{{ 'SIDE_BAR.DASHBOARD' | translate }}</span>
       </a>
     </li>
     <li>
       <a routerLinkActive="activated" routerLink="transactions">
         <img src="assets/sideBarImg/glyph.svg" alt="Іконка панелі керування" />
-        <span>Transactions</span></a
+        <span>{{ 'SIDE_BAR.TRANSACTIONS' | translate }}</span></a
       >
     </li>
     <li>
       <a routerLinkActive="activated" routerLink="accounts">
         <img src="assets/sideBarImg/user.svg" alt="Іконка панелі керування" />
-        <span>Accounts</span></a
+        <span>{{ 'SIDE_BAR.ACCOUNTS' | translate }}</span></a
       >
     </li>
     <li>
       <a routerLinkActive="activated" routerLink="investments">
         <img src="assets/sideBarImg/groupss.svg" alt="Іконка панелі керування" />
-        <span>Investments</span></a
+        <span>{{ 'SIDE_BAR.INVESTMENTS' | translate }}</span></a
       >
     </li>
     <li>
       <a routerLinkActive="activated" routerLink="credit-cards">
         <img src="assets/sideBarImg/groupsss.svg" alt="Іконка панелі керування" />
-        <span>Credit Cards</span></a
+        <span>{{ 'SIDE_BAR.CREDIT_CARDS' | translate }}</span></a
       >
     </li>
     <li>
       <a routerLinkActive="activated" routerLink="loans">
         <img src="assets/sideBarImg/loan.svg" alt="Іконка панелі керування" />
-        <span>Loans</span></a
+        <span>{{ 'SIDE_BAR.LOANS' | translate }}</span></a
       >
     </li>
     <li>
       <a routerLinkActive="activated" routerLink="services">
         <img src="assets/sideBarImg/service.svg" alt="Іконка панелі керування" />
-        <span>Services</span></a
+        <span>{{ 'SIDE_BAR.SERVICES' | translate }}</span></a
       >
     </li>
     <li>
       <a routerLinkActive="activated" routerLink="settings">
         <img src="assets/sideBarImg/settings-solid.svg" alt="Іконка панелі керування" />
-        <span>Setting</span></a
+        <span>{{ 'SIDE_BAR.SETTINGS' | translate }}</span></a
       >
     </li>
   </ul>
-  <div class="side-bar__log-out">
-    <button mat-flat-button (click)="exit()">Log out</button>
-  </div>
 </div>

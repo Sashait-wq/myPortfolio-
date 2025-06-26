@@ -9,6 +9,7 @@ import {
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatButton } from '@angular/material/button';
 import { PasswordChangeService } from '../../../request-service/password-change.service';
+import { ToastService } from '../../toast-message/toast.service';
 
 @Component({
   selector: 'app-security',
@@ -18,7 +19,7 @@ import { PasswordChangeService } from '../../../request-service/password-change.
 })
 export class SecurityComponent {
   private passwordChangeService = inject(PasswordChangeService);
-
+  private toastService = inject(ToastService);
   form = new FormGroup({
     currentPassword: new FormControl<string>('', [Validators.required, Validators.minLength(6)]),
     newPassword: new FormControl<string>('', [Validators.required, Validators.minLength(6)]),
@@ -34,12 +35,20 @@ export class SecurityComponent {
     this.passwordChangeService
       .passwordChange({ currentPassword: current!, newPassword: password! })
       .subscribe({
-        next: (response) => {
-          console.log('Password changed successfully', response);
+        next: () => {
+          this.toastService.showToast({
+            message: 'Password changed successfully',
+            title: 'Done'
+          });
           this.form.reset();
         },
         error: (err) => {
-          console.error('Error changing password', err);
+          this.toastService.showToast({
+            message: `Password changed: ${err.message}`,
+            error: true,
+            title: 'Error',
+            buttonClous: true
+          });
         }
       });
   }

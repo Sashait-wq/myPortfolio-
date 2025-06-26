@@ -1,0 +1,22 @@
+@for (toast of toasts; track toast) {
+  <div class="toast" [ngClass]="{ 'toast--error': toast.error, 'toast--success': !toast.error }">
+    @if (toast.title) {
+      <div class="toast__header">
+        <h4>{{ toast.title }}</h4>
+        @if (toast.buttonClous) {
+          <button mat-icon-button (click)="closeToast(toast)">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </div>
+    }
+    <div class="toast__body">
+      <p>{{ toast.message }}</p>
+      @if (toast.buttonClous && !toast.title) {
+        <button mat-icon-button (click)="closeToast(toast)">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </div>
+  </div>
+}

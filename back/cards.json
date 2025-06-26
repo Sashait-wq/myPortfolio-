@@ -1,3 +1,22 @@
 {
-  "cards": []
-} 
+  "cards": [
+    {
+      "id": "1750289557923",
+      "userId": "1748540818058",
+      "cardType": "Classic",
+      "nameOnCard": "Sasha",
+      "cardNumber": "1234567899876543",
+      "expirationDate": "2005-08-25",
+      "createdAt": "2025-06-18T23:32:37.923Z"
+    },
+    {
+      "id": "1750353265344",
+      "userId": "1748540818058",
+      "cardType": "Secondary",
+      "nameOnCard": "Sasha 2",
+      "cardNumber": "1221212121212121",
+      "expirationDate": "2222-02-22",
+      "createdAt": "2025-06-19T17:14:25.344Z"
+    }
+  ]
+}

@@ -11,7 +11,7 @@
             [theme]="{ margin: 0 }"
           ></ngx-skeleton-loader>
         } @else {
-          <span class="card__value">${{ card.balance }}</span>
+          <span class="card__value">$ {{ creditCard.balance ? creditCard.balance : 0 }}</span>
         }
       </div>
       <img src="assets/imgCard/Chip-Card.svg" alt="Chip" />
@@ -27,7 +27,7 @@
             [theme]="{ margin: 0 }"
           ></ngx-skeleton-loader>
         } @else {
-          <p class="card__value">{{ card.nameOnCard }}</p>
+          <p class="card__value">{{ creditCard.nameOnCard }}</p>
         }
       </div>
       <div class="card__body-expiry">
@@ -39,7 +39,7 @@
             [theme]="{ margin: 0 }"
           ></ngx-skeleton-loader>
         } @else {
-          <span class="card__value">{{ card.expirationDate }}</span>
+          <span class="card__value">{{ creditCard.expirationDate | date: 'MM/YY' }}</span>
         }
       </div>
     </div>
@@ -53,7 +53,7 @@
         [theme]="{ margin: 0 }"
       ></ngx-skeleton-loader>
     } @else {
-      <span class="card__footer-number">{{ card.cardNumber | cardMask: 4 : 'both' }}</span>
+      <span class="card__footer-number">{{ creditCard.cardNumber | cardMask: 4 : 'both' }}</span>
     }
     <img src="assets/imgCard/Group.svg" alt="Logo" />
   </div>

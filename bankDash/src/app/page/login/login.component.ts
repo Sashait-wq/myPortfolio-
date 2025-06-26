@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
   authService = inject(AuthService);
   route = inject(ActivatedRoute);
   form = new FormGroup({
-    username: new FormControl<string | null>('Sasha1111', [Validators.required]),
-    password: new FormControl<string | null>('awdawdawd2122121', [
+    username: new FormControl<string | null>('Sasha2', [Validators.required]),
+    password: new FormControl<string | null>('222222', [
       Validators.required,
       Validators.minLength(6)
     ])

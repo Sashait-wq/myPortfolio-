@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
+import { SwitchLanguageComponent } from '../switch-language/switch-language.component';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,8 @@ import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
     MatIconModule,
     RouterLink,
     MatMenuModule,
-    MatMenuTrigger
+    MatMenuTrigger,
+    SwitchLanguageComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'

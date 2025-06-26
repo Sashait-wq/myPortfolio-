@@ -1,0 +1,11 @@
+<div class="card-section">
+  <div class="card-section__header">
+    <h2 class="card-section__heading">My Cards</h2>
+    <ng-content select="[cards-link]"></ng-content>
+  </div>
+  <div class="card-section__list">
+    @for (card of cards; track card) {
+      <app-card-item [creditCard]="card"></app-card-item>
+    }
+  </div>
+</div>

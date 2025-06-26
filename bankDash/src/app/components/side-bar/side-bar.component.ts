@@ -1,19 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MatButton } from '@angular/material/button';
-import { AuthService } from '../../guards/auth.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-side-bar',
-  imports: [RouterLink, RouterLinkActive, CommonModule, MatButton],
+  imports: [RouterLink, RouterLinkActive, CommonModule, TranslatePipe],
   templateUrl: './side-bar.component.html',
   styleUrl: './side-bar.component.scss'
 })
-export class SideBarComponent {
-  authService = inject(AuthService);
-
-  exit(): void {
-    this.authService.logout();
-  }
-}
+export class SideBarComponent {}

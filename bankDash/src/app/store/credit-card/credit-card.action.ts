@@ -1,20 +1,33 @@
 import { createAction, props } from '@ngrx/store';
-import { Card } from '../../interfaces/card.interface';
+import { Card, CreditCard } from '../../interfaces/card.interface';
 
 export enum creditCardTypes {
-  cardLoad = '[Credit Card] Load',
-  cardLoadSuccess = '[Credit Card] Load Success',
-  cardLoadFailure = '[Credit Card] Load Failure'
+  Load = '[Credit Card] Load',
+  LoadSuccess = '[Credit Card] Load Success',
+  LoadFailure = '[Credit Card] Load Failure',
+
+  Create = '[Credit Card] Create',
+  CreateSuccess = '[Credit Card] Create Success',
+  CreateFailure = '[Credit Card] Create Failure'
 }
 
-export const creditCardLoad = createAction(creditCardTypes.cardLoad);
+export const createCreditCard = createAction(creditCardTypes.Create, props<{ card: CreditCard }>());
+
+export const createCreditCardSuccess = createAction(
+  creditCardTypes.CreateSuccess,
+  props<{ card: CreditCard }>()
+);
+
+export const createCreditCardFailure = createAction(
+  creditCardTypes.CreateFailure,
+  props<{ error: any }>()
+);
+
+export const creditCardLoad = createAction(creditCardTypes.Load);
 
 export const creditCardSuccess = createAction(
-  creditCardTypes.cardLoadSuccess,
+  creditCardTypes.LoadSuccess,
   props<{ card: Card[] }>()
 );
 
-export const creditCardError = createAction(
-  creditCardTypes.cardLoadFailure,
-  props<{ error: any }>()
-);
+export const creditCardFailure = createAction(creditCardTypes.LoadFailure, props<{ error: any }>());

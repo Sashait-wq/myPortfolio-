@@ -705,11 +705,16 @@ app.get("/api/dashboard", authMiddleware, async (req, res) => {
       .slice(0, 5)
       .map(t => ({
         id: t.id,
+        transactionId: t.transactionId,
         description: t.description,
         type: t.type,
+        cardId: t.cardId,
+        cardNumber: t.cardNumber || null,
         amount: t.amount,
         date: t.date,
-        cardNumber: t.cardNumber || null
+        createdAt: t.createdAt,
+        userId: t.userId,
+        loanId: t.loanId || undefined,
       }));
     const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const weeklyActivity = {
@@ -763,6 +768,8 @@ app.get("/api/dashboard", authMiddleware, async (req, res) => {
         nameOnCard: card.nameOnCard,
         cardNumber: maskCardNumber(card.cardNumber),
         expirationDate: card.expirationDate,
+        createdAt: card.createdAt,
+        userId: card.userId,
         balance: balance,
       })),
       recentTransactions,

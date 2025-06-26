@@ -24,7 +24,6 @@ export class LoansComponent implements OnInit {
   loanInformation: LoanInformation | null = null;
 
   dataSource = new MatTableDataSource<Loan>();
-
   displayedColumns: string[] = [
     'slNo',
     'amount',
@@ -44,7 +43,7 @@ export class LoansComponent implements OnInit {
 
     this.store.dispatch(loadLoan());
     this.store.select(loanSelector).subscribe((loans) => {
-      this.dataSource.data = loans.data;
+      this.dataSource = new MatTableDataSource(loans.data);
       this.total = loans.total;
     });
   }
